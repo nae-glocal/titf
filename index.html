@@ -1,17 +1,15 @@
 <!-- ========================================== -->
-<!-- Version 3: Safe Mode (Pure CSS & No Libraries) -->
-<!-- เสถียรที่สุดสำหรับ WordPress -->
+<!-- Version 3.2: Safe Mode + Coupon Boxes + Full Data Fields -->
 <!-- ========================================== -->
 
-<!-- เรียกใช้แค่ฟอนต์และไอคอน (โอกาสพังต่ำมาก) -->
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
-    /* Scoped CSS: ใช้ ID คลุมเพื่อไม่ให้กระทบธีมเว็บ */
+    /* Scoped CSS */
     #gloce_v3_root {
         font-family: 'Sarabun', 'Roboto', sans-serif !important;
-        background-color: #f9fafb; /* gray-50 */
+        background-color: #f9fafb;
         color: #333;
         line-height: 1.5;
         box-sizing: border-box;
@@ -23,18 +21,19 @@
         box-sizing: border-box;
     }
 
-    /* Header */
+    /* 1. Main Header (Green Bar) */
     .gloce-header {
         background-color: #059669; /* emerald-600 */
         color: white;
         padding: 20px;
         border-radius: 8px;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
         align-items: center;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        gap: 15px;
     }
 
     .gloce-header-title {
@@ -47,7 +46,7 @@
         gap: 10px;
     }
 
-    /* ปุ่มเปลี่ยนภาษา */
+    /* Language Buttons */
     .gloce-lang-group {
         display: flex;
         gap: 5px;
@@ -67,17 +66,61 @@
         transition: all 0.2s;
     }
 
-    .gloce-lang-btn:hover {
-        color: white;
-    }
-
+    .gloce-lang-btn:hover { color: white; }
     .gloce-lang-btn.active {
         background-color: white;
         color: #059669;
         font-weight: bold;
     }
 
-    /* Grid Layout */
+    /* 2. Coupon Box (Black Box) */
+    .gloce-coupon-box {
+        background-color: #1f2937; /* gray-800 */
+        color: white;
+        text-align: center;
+        padding: 30px 20px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+    }
+
+    .gloce-coupon-icon {
+        font-size: 2rem;
+        color: #fbbf24; /* amber-400 */
+        margin-bottom: 10px;
+        display: inline-block;
+    }
+
+    .gloce-coupon-title {
+        margin: 0 0 10px 0 !important;
+        color: white !important;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    .gloce-coupon-desc {
+        color: #9ca3af;
+        margin-bottom: 15px !important;
+        font-size: 0.95rem;
+    }
+    
+    .gloce-coupon-btn {
+        display: inline-flex;
+        align-items: center;
+        background-color: #fbbf24;
+        color: #111827;
+        padding: 10px 24px;
+        border-radius: 9999px;
+        text-decoration: none !important;
+        font-weight: bold;
+        margin-top: 10px;
+        transition: background-color 0.2s;
+    }
+    
+    .gloce-coupon-btn:hover {
+        background-color: #f59e0b;
+    }
+
+    /* 3. Grid & Cards */
     .gloce-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -85,7 +128,6 @@
         margin-bottom: 40px;
     }
 
-    /* Card */
     .gloce-card {
         background: white;
         border: 1px solid #e5e7eb;
@@ -96,7 +138,6 @@
         flex-direction: column;
         box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     }
-
     .gloce-card:hover {
         transform: translateY(-5px);
         box-shadow: 0 10px 15px rgba(0,0,0,0.1);
@@ -142,15 +183,8 @@
         display: flex;
         align-items: center;
     }
-    
-    .gloce-card-address a {
-        color: #6b7280;
-        text-decoration: none;
-    }
-    .gloce-card-address a:hover {
-        color: #059669;
-        text-decoration: underline;
-    }
+    .gloce-card-address a { color: #6b7280; text-decoration: none; }
+    .gloce-card-address a:hover { color: #059669; text-decoration: underline; }
 
     .gloce-tags {
         display: flex;
@@ -183,12 +217,8 @@
         transition: all 0.2s;
         margin-top: auto;
     }
+    .gloce-btn:hover { background-color: #ecfdf5; }
 
-    .gloce-btn:hover {
-        background-color: #ecfdf5;
-    }
-
-    /* Section Title */
     .gloce-section-title {
         font-size: 1.5rem;
         font-weight: bold;
@@ -198,44 +228,32 @@
         margin: 30px 0 20px 0 !important;
     }
 
-    /* Footer */
-    .gloce-footer {
-        background-color: #1f2937;
-        color: white;
-        text-align: center;
-        padding: 40px 20px;
-        border-radius: 8px;
-    }
-    
-    .gloce-footer-btn {
-        display: inline-flex;
-        align-items: center;
-        background-color: #fbbf24; /* amber-400 */
-        color: #111827;
-        padding: 10px 24px;
-        border-radius: 9999px;
-        text-decoration: none !important;
-        font-weight: bold;
-        margin-top: 15px;
-        transition: background-color 0.2s;
-    }
-    
-    .gloce-footer-btn:hover {
-        background-color: #f59e0b;
-    }
-
-    /* Loading Spinner */
     .gloce-loading {
         text-align: center;
         padding: 50px;
         color: #059669;
         font-size: 1.2rem;
     }
+    
+    .gloce-copyright {
+        margin-top: 30px;
+        border-top: 1px solid #374151;
+        padding-top: 20px;
+        font-size: 0.8rem;
+        color: #6b7280;
+    }
+
+    @media (max-width: 600px) {
+        .gloce-header { flex-direction: column; text-align: center; }
+        .gloce-header-title { justify-content: center; margin-bottom: 15px !important; }
+        .gloce-lang-group { width: 100%; justify-content: center; }
+        .gloce-lang-btn { flex-grow: 1; }
+    }
 </style>
 
 <div id="gloce_v3_root">
 
-    <!-- Header -->
+    <!-- 1. Header (Green) -->
     <div class="gloce-header">
         <div class="gloce-header-title">
             <i class="fa-solid fa-house-chimney"></i>
@@ -248,23 +266,34 @@
         </div>
     </div>
 
-    <!-- Content Area -->
+    <!-- 2. Top Coupon Box (Black) -->
+    <div class="gloce-coupon-box">
+        <i class="fa-solid fa-ticket gloce-coupon-icon"></i>
+        <h3 id="gloce_v3_top_coupon_title" class="gloce-coupon-title">มีคูปองส่วนลดใช่ไหม?</h3>
+        <p id="gloce_v3_top_coupon_desc" class="gloce-coupon-desc">ดูวิธีการใช้งานคูปองและข้อกำหนดต่างๆ ได้ที่นี่</p>
+        <a href="#" class="gloce-coupon-btn">
+            <i class="fa-solid fa-book-open" style="margin-right: 8px;"></i>
+            <span id="gloce_v3_top_coupon_btn_text">คู่มือการใช้งานคูปอง</span>
+        </a>
+    </div>
+
+    <!-- 3. Content Area -->
     <div id="gloce_v3_content">
         <div class="gloce-loading">
             <i class="fa-solid fa-spinner fa-spin"></i> กำลังโหลดข้อมูล...
         </div>
     </div>
 
-    <!-- Footer -->
-    <div class="gloce-footer">
-        <i class="fa-solid fa-ticket" style="font-size: 2rem; color: #fbbf24; margin-bottom: 10px;"></i>
-        <h3 id="gloce_v3_footer_title" style="margin: 0 0 10px 0; color: white; font-size: 1.2rem;">มีคูปองส่วนลดใช่ไหม?</h3>
-        <p id="gloce_v3_footer_desc" style="color: #9ca3af; margin-bottom: 15px;">ดูวิธีการใช้งานคูปองและข้อกำหนดต่างๆ ได้ที่นี่</p>
-        <a href="#" class="gloce-footer-btn">
+    <!-- 4. Bottom Coupon Box (Black) -->
+    <div class="gloce-coupon-box">
+        <i class="fa-solid fa-ticket gloce-coupon-icon"></i>
+        <h3 id="gloce_v3_bottom_coupon_title" class="gloce-coupon-title">มีคูปองส่วนลดใช่ไหม?</h3>
+        <p id="gloce_v3_bottom_coupon_desc" class="gloce-coupon-desc">ดูวิธีการใช้งานคูปองและข้อกำหนดต่างๆ ได้ที่นี่</p>
+        <a href="#" class="gloce-coupon-btn">
             <i class="fa-solid fa-book-open" style="margin-right: 8px;"></i>
-            <span id="gloce_v3_footer_btn_text">คู่มือการใช้งานคูปอง</span>
+            <span id="gloce_v3_bottom_coupon_btn_text">คู่มือการใช้งานคูปอง</span>
         </a>
-        <div style="margin-top: 30px; border-top: 1px solid #374151; padding-top: 20px; font-size: 0.8rem; color: #6b7280;">
+        <div class="gloce-copyright">
             &copy; 2024 GLOCE Accommodations.
         </div>
     </div>
@@ -273,7 +302,7 @@
 
 <script>
 (function() {
-    // --- Data ---
+    // --- Data (Updated with placeholders) ---
     const properties = [
         { 
             area: "逗子 (Zushi)", 
@@ -302,24 +331,159 @@
             mapLink: "https://maps.app.goo.gl/iaxiDW4pammT9Kwq6",
             image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2044969/picture/1714610463-b3.jpg"
         },
-        // ... (ข้อมูลอื่นๆ เหมือนเดิม เพื่อความกระชับ) ...
-        { area: "葉山 (Hayama)", name: "1816-2 Horiuchi", address: "Horiuchi, Hayama", tags: ["Ocean View"], link: "#" },
-        { area: "葉山 (Hayama)", name: "GLOCE 葉山のサーファーズログハウス", address: "Hayama", tags: ["Log House", "Surfing"], link: "#" },
-        { area: "葉山 (Hayama)", name: "GLOCE 葉山の古民家 ～囲炉裏でＢＢＱ～", address: "Hayama", tags: ["Traditional", "BBQ"], link: "#" },
-        { area: "葉山 (Hayama)", name: "GLOCE ゲストハウス一色 in Hayama", address: "Isshiki, Hayama", tags: ["Guesthouse"], link: "#" },
-        { area: "葉山 (Hayama)", name: "GLOCE Hayama near Morito Beach", address: "Morito, Hayama", tags: ["Beach"], link: "#" },
-        { area: "鎌倉 (Kamakura)", name: "「海行燈」一軒貸切の宿", address: "Koshigoe, Kamakura", tags: ["Private Rental"], link: "#" },
-        { area: "鎌倉 (Kamakura)", name: "GLOCE 鎌倉 若宮大路House", address: "Wakamiya, Kamakura", tags: ["City Center"], link: "#" },
-        { area: "鎌倉 (Kamakura)", name: "2 Chome-17-24 Hase", address: "Hase, Kamakura", tags: ["Near Temple"], link: "#" },
-        { area: "横須賀 (Yokosuka)", name: "GLOCE 横須賀 SHARE ROOM @NAVY BASE", address: "Yokosuka", tags: ["Share Room"], link: "#" },
-        { area: "横須賀 (Yokosuka)", name: "GLOCE ゲストルーム 2min walk to NAVY BASE", address: "Yokosuka", tags: ["Guest Room"], link: "#" },
-        { area: "美幌 (Bihoro)", name: "GLOCE Guestroom Bihoro", address: "Bihoro, Hokkaido", tags: ["Hokkaido"], link: "#" },
-        { area: "美幌 (Bihoro)", name: "GLOCE Bihoro ゲストハウス 丘宿", address: "Bihoro, Hokkaido", tags: ["Guesthouse"], link: "#" },
-        { area: "宮古島 (Miyakojima)", name: "石田ヴィレッジ", address: "Miyakojima, Okinawa", tags: ["Village", "Resort"], link: "#" },
-        { area: "伊豆 (Izu)", name: "GLOCE一碧ハウス", address: "Ippeki, Izu", tags: ["Nature"], link: "#" },
-        { area: "沖縄 (Okinawa)", name: "ユイマール恩納1", address: "Onna, Okinawa", tags: ["Resort"], link: "#" },
-        { area: "千葉 (Chiba)", name: "GLOCE RIN", address: "Chiba", tags: ["Modern"], link: "#" },
-        { area: "広島 (Hiroshima)", name: "761-3 Akitsucho Kazahaya", address: "Akitsucho, Hiroshima", tags: ["Sea Side"], link: "#" }
+        { 
+            area: "葉山 (Hayama)", 
+            name: "1816-2 Horiuchi", 
+            address: "Horiuchi, Hayama", 
+            tags: ["Ocean View"], 
+            link: "#",
+            mapLink: "#",
+            image: "#"
+        },
+        { 
+            area: "葉山 (Hayama)", 
+            name: "GLOCE 葉山のサーファーズログハウス", 
+            address: "Hayama", 
+            tags: ["Log House", "Surfing"], 
+            link: "#",
+            mapLink: "#",
+            image: "#"
+        },
+        { 
+            area: "葉山 (Hayama)", 
+            name: "GLOCE 葉山の古民家 ～囲炉裏でＢＢＱ～", 
+            address: "Hayama", 
+            tags: ["Traditional", "BBQ"], 
+            link: "#",
+            mapLink: "#",
+            image: "#"
+        },
+        { 
+            area: "葉山 (Hayama)", 
+            name: "GLOCE ゲストハウス一色 in Hayama", 
+            address: "Isshiki, Hayama", 
+            tags: ["Guesthouse"], 
+            link: "#",
+            mapLink: "#",
+            image: "#"
+        },
+        { 
+            area: "葉山 (Hayama)", 
+            name: "GLOCE Hayama near Morito Beach", 
+            address: "Morito, Hayama", 
+            tags: ["Beach"], 
+            link: "#",
+            mapLink: "#",
+            image: "#"
+        },
+        { 
+            area: "鎌倉 (Kamakura)", 
+            name: "「海行燈」一軒貸切の宿", 
+            address: "Koshigoe, Kamakura", 
+            tags: ["Private Rental"], 
+            link: "#",
+            mapLink: "#",
+            image: "#"
+        },
+        { 
+            area: "鎌倉 (Kamakura)", 
+            name: "GLOCE 鎌倉 若宮大路House", 
+            address: "Wakamiya, Kamakura", 
+            tags: ["City Center"], 
+            link: "#",
+            mapLink: "#",
+            image: "#"
+        },
+        { 
+            area: "鎌倉 (Kamakura)", 
+            name: "2 Chome-17-24 Hase", 
+            address: "Hase, Kamakura", 
+            tags: ["Near Temple"], 
+            link: "#",
+            mapLink: "#",
+            image: "#"
+        },
+        { 
+            area: "横須賀 (Yokosuka)", 
+            name: "GLOCE 横須賀 SHARE ROOM @NAVY BASE", 
+            address: "Yokosuka", 
+            tags: ["Share Room"], 
+            link: "#",
+            mapLink: "#",
+            image: "#"
+        },
+        { 
+            area: "横須賀 (Yokosuka)", 
+            name: "GLOCE ゲストルーム 2min walk to NAVY BASE", 
+            address: "Yokosuka", 
+            tags: ["Guest Room"], 
+            link: "#",
+            mapLink: "#",
+            image: "#"
+        },
+        { 
+            area: "美幌 (Bihoro)", 
+            name: "GLOCE Guestroom Bihoro", 
+            address: "Bihoro, Hokkaido", 
+            tags: ["Hokkaido"], 
+            link: "#",
+            mapLink: "#",
+            image: "#"
+        },
+        { 
+            area: "美幌 (Bihoro)", 
+            name: "GLOCE Bihoro ゲストハウス 丘宿", 
+            address: "Bihoro, Hokkaido", 
+            tags: ["Guesthouse"], 
+            link: "#",
+            mapLink: "#",
+            image: "#"
+        },
+        { 
+            area: "宮古島 (Miyakojima)", 
+            name: "石田ヴィレッジ", 
+            address: "Miyakojima, Okinawa", 
+            tags: ["Village", "Resort"], 
+            link: "#",
+            mapLink: "#",
+            image: "#"
+        },
+        { 
+            area: "伊豆 (Izu)", 
+            name: "GLOCE一碧ハウス", 
+            address: "Ippeki, Izu", 
+            tags: ["Nature"], 
+            link: "#",
+            mapLink: "#",
+            image: "#"
+        },
+        { 
+            area: "沖縄 (Okinawa)", 
+            name: "ユイマール恩納1", 
+            address: "Onna, Okinawa", 
+            tags: ["Resort"], 
+            link: "#",
+            mapLink: "#",
+            image: "#"
+        },
+        { 
+            area: "千葉 (Chiba)", 
+            name: "GLOCE RIN", 
+            address: "Chiba", 
+            tags: ["Modern"], 
+            link: "#",
+            mapLink: "#",
+            image: "#"
+        },
+        { 
+            area: "広島 (Hiroshima)", 
+            name: "761-3 Akitsucho Kazahaya", 
+            address: "Akitsucho, Hiroshima", 
+            tags: ["Sea Side"], 
+            link: "#",
+            mapLink: "#",
+            image: "#"
+        }
     ];
 
     // --- Translations ---
@@ -377,9 +541,15 @@
         // Static Texts
         const t = translations[lang];
         setText('gloce_v3_header_title', t.headerTitle);
-        setText('gloce_v3_footer_title', t.footerCouponTitle);
-        setText('gloce_v3_footer_desc', t.footerCouponDesc);
-        setText('gloce_v3_footer_btn_text', t.footerBtnText);
+        
+        // Update both Top and Bottom Coupon Boxes
+        setText('gloce_v3_top_coupon_title', t.footerCouponTitle);
+        setText('gloce_v3_top_coupon_desc', t.footerCouponDesc);
+        setText('gloce_v3_top_coupon_btn_text', t.footerBtnText);
+
+        setText('gloce_v3_bottom_coupon_title', t.footerCouponTitle);
+        setText('gloce_v3_bottom_coupon_desc', t.footerCouponDesc);
+        setText('gloce_v3_bottom_coupon_btn_text', t.footerBtnText);
         
         render();
     };
@@ -441,7 +611,7 @@
 
                 // Image Logic
                 let imageHtml;
-                if(item.image) {
+                if(item.image && item.image !== "#") {
                     imageHtml = `<img src="${item.image}" alt="${item.name}" class="gloce-card-img">`;
                 } else {
                     const color = stringToColor(item.name);
@@ -450,7 +620,7 @@
 
                 // Address & Link Logic
                 let addressHtml = `<span><i class="fa-solid fa-location-dot" style="color:#059669; margin-right:5px;"></i> ${item.address}</span>`;
-                if (item.mapLink) {
+                if (item.mapLink && item.mapLink !== "#") {
                     addressHtml = `<a href="${item.mapLink}" target="_blank" title="Google Maps">${addressHtml}</a>`;
                 }
 
