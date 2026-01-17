@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ที่พักของเรา - GLOCE Accommodations</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* รีเซ็ตค่าพื้นฐานของหน้าเว็บเพื่อให้แสดงผลเต็มจอ */
+        body { margin: 0; padding: 20px; background-color: #f3f4f6; font-family: 'Sarabun', sans-serif; }
+    </style>
+</head>
+<body>
+
+    <style>
+        /* Scoped CSS: ใช้ ID คลุมเพื่อไม่ให้กระทบธีมเว็บ */
+        #gloce_v3_root {
+            font-family: 'Sarabun', 'Roboto', sans-serif !important;
+            background-color: #f9fafb; /* gray-50 */
+            color: #333;
+            line-height: 1.5;
+            box-sizing: border-box;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 1200px; /* จำกัดความกว้างไม่ให้กว้างเกินไป */
+            margin: 0 auto; /* จัดกึ่งกลาง */
+        }
+    
+        #gloce_v3_root * {
+            box-sizing: border-box;
+        }
+    
+        /* Header */
+        .gloce-header {
+            background-color: #059669; /* emerald-600 */
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+    
+        .gloce-header-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 !important;
+            color: white !important;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    
+        /* ปุ่มเปลี่ยนภาษา */
+        .gloce-lang-group {
+            display: flex;
+            gap: 5px;
+            background: rgba(0,0,0,0.1);
+            padding: 4px;
+            border-radius: 6px;
+        }
+    
+        .gloce-lang-btn {
+            background: transparent;
+            border: 1px solid transparent;
+            color: rgba(255,255,255,0.8);
+            padding: 5px 12px;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+    
+        .gloce-lang-btn:hover {
+            color: white;
+        }
+    
+        .gloce-lang-btn.active {
+            background-color: white;
+            color: #059669;
+            font-weight: bold;
+        }
+    
+        /* Grid Layout */
+        .gloce-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+    
+        /* Card */
+        .gloce-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.2s;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+    
+        .gloce-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+    
+        .gloce-card-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            background-color: #e5e7eb;
+        }
+        
+        .gloce-card-placeholder {
+            height: 200px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+    
+        .gloce-card-body {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+    
+        .gloce-card-title {
+            font-size: 1.125rem;
+            font-weight: bold;
+            margin: 0 0 10px 0 !important;
+            color: #1f2937;
+            line-height: 1.4;
+        }
+    
+        .gloce-card-address {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .gloce-card-address a {
+            color: #6b7280;
+            text-decoration: none;
+        }
+        .gloce-card-address a:hover {
+            color: #059669;
+            text-decoration: underline;
+        }
+    
+        .gloce-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+    
+        .gloce-tag {
+            background-color: #f3f4f6;
+            color: #4b5563;
+            font-size: 0.75rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+    
+        .gloce-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #059669;
+            color: #059669;
+            background: transparent;
+            border-radius: 6px;
+            text-decoration: none !important;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            margin-top: auto;
+        }
+    
+        .gloce-btn:hover {
+            background-color: #ecfdf5;
+        }
+    
+        /* Section Title */
+        .gloce-section-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #374151;
+            border-left: 5px solid #059669;
+            padding-left: 15px;
+            margin: 30px 0 20px 0 !important;
+        }
+    
+        /* Footer */
+        .gloce-footer {
+            background-color: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 8px;
+        }
+        
+        .gloce-footer-btn {
+            display: inline-flex;
+            align-items: center;
+            background-color: #fbbf24; /* amber-400 */
+            color: #111827;
+            padding: 10px 24px;
+            border-radius: 9999px;
+            text-decoration: none !important;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: background-color 0.2s;
+        }
+        
+        .gloce-footer-btn:hover {
+            background-color: #f59e0b;
+        }
+    
+        /* Loading Spinner */
+        .gloce-loading {
+            text-align: center;
+            padding: 50px;
+            color: #059669;
+            font-size: 1.2rem;
+        }
+    </style>
+    
+    <div id="gloce_v3_root">
+    
+        <div class="gloce-header">
+            <div class="gloce-header-title">
+                <i class="fa-solid fa-house-chimney"></i>
+                <span id="gloce_v3_header_title">ที่พักของเรา</span>
+            </div>
+            <div class="gloce-lang-group">
+                <button onclick="gloceV3SetLang('th')" id="gloce_v3_btn_th" class="gloce-lang-btn active">TH</button>
+                <button onclick="gloceV3SetLang('en')" id="gloce_v3_btn_en" class="gloce-lang-btn">EN</button>
+                <button onclick="gloceV3SetLang('jp')" id="gloce_v3_btn_jp" class="gloce-lang-btn">JP</button>
+            </div>
+        </div>
+    
+        <div id="gloce_v3_content">
+            <div class="gloce-loading">
+                <i class="fa-solid fa-spinner fa-spin"></i> กำลังโหลดข้อมูล...
+            </div>
+        </div>
+    
+        <div class="gloce-footer">
+            <i class="fa-solid fa-ticket" style="font-size: 2rem; color: #fbbf24; margin-bottom: 10px;"></i>
+            <h3 id="gloce_v3_footer_title" style="margin: 0 0 10px 0; color: white; font-size: 1.2rem;">มีคูปองส่วนลดใช่ไหม?</h3>
+            <p id="gloce_v3_footer_desc" style="color: #9ca3af; margin-bottom: 15px;">ดูวิธีการใช้งานคูปองและข้อกำหนดต่างๆ ได้ที่นี่</p>
+            <a href="#" class="gloce-footer-btn">
+                <i class="fa-solid fa-book-open" style="margin-right: 8px;"></i>
+                <span id="gloce_v3_footer_btn_text">คู่มือการใช้งานคูปอง</span>
+            </a>
+            <div style="margin-top: 30px; border-top: 1px solid #374151; padding-top: 20px; font-size: 0.8rem; color: #6b7280;">
+                © 2024 GLOCE Accommodations.
+            </div>
+        </div>
+    
+    </div>
+    
+    <script>
+    (function() {
+        // --- Data ---
+        const properties = [
+            { 
+                area: "逗子 (Zushi)", 
+                name: "GLOCE Zushi Worcation house NAGISA", 
+                address: "Zushi, Kanagawa", 
+                tags: ["Guesthouse", "Workation"], 
+                link: "https://gloce.airhost.co/en/houses/197161",
+                mapLink: "https://maps.app.goo.gl/zT9Du3dmgyyL34iD9",
+                image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2040052/picture/1713238484-17n.jpg"
+            },
+            { 
+                area: "逗子 (Zushi)", 
+                name: "民泊 ハルちゃん", 
+                address: "5 Chome-10-8 Kotsubo, Zushi, Kanagawa 249-0008", 
+                tags: ["Homestay"], 
+                link: "https://gloce.airhost.co/en/houses/197163" ,
+                mapLink: "https://maps.app.goo.gl/SSUMvUo4ysjJ2rUD9",
+                image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/1794797/picture/1620722954-1605748232-835e40ef-8f89-4b37-8450-10a5d0cce370.jpg"
+            },
+            { 
+                area: "逗子 (Zushi)", 
+                name: "逗子葉山", 
+                address: "6-chōme-5-42 Zushi, Kanagawa 249-0006", 
+                tags: ["Private House"],
+                link: "https://gloce.airhost.co/en/houses/523271" ,
+                mapLink: "https://maps.app.goo.gl/iaxiDW4pammT9Kwq6",
+                image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2044969/picture/1714610463-b3.jpg"
+            },
+            { area: "葉山 (Hayama)", name: "1816-2 Horiuchi", address: "Horiuchi, Hayama", tags: ["Ocean View"], link: "#" },
+            { area: "葉山 (Hayama)", name: "GLOCE 葉山のサーファーズログハウス", address: "Hayama", tags: ["Log House", "Surfing"], link: "#" },
+            { area: "葉山 (Hayama)", name: "GLOCE 葉山の古民家 ～囲炉裏でＢＢＱ～", address: "Hayama", tags: ["Traditional", "BBQ"], link: "#" },
+            { area: "葉山 (Hayama)", name: "GLOCE ゲストハウス一色 in Hayama", address: "Isshiki, Hayama", tags: ["Guesthouse"], link: "#" },
+            { area: "葉山 (Hayama)", name: "GLOCE Hayama near Morito Beach", address: "Morito, Hayama", tags: ["Beach"], link: "#" },
+            { area: "鎌倉 (Kamakura)", name: "「海行燈」一軒貸切の宿", address: "Koshigoe, Kamakura", tags: ["Private Rental"], link: "#" },
+            { area: "鎌倉 (Kamakura)", name: "GLOCE 鎌倉 若宮大路House", address: "Wakamiya, Kamakura", tags: ["City Center"], link: "#" },
+            { area: "鎌倉 (Kamakura)", name: "2 Chome-17-24 Hase", address: "Hase, Kamakura", tags: ["Near Temple"], link: "#" },
+            { area: "横須賀 (Yokosuka)", name: "GLOCE 横須賀 SHARE ROOM @NAVY BASE", address: "Yokosuka", tags: ["Share Room"], link: "#" },
+            { area: "横須賀 (Yokosuka)", name: "GLOCE ゲストルーム 2min walk to NAVY BASE", address: "Yokosuka", tags: ["Guest Room"], link: "#" },
+            { area: "美幌 (Bihoro)", name: "GLOCE Guestroom Bihoro", address: "Bihoro, Hokkaido", tags: ["Hokkaido"], link: "#" },
+            { area: "美幌 (Bihoro)", name: "GLOCE Bihoro ゲストハウス 丘宿", address: "Bihoro, Hokkaido", tags: ["Guesthouse"], link: "#" },
+            { area: "宮古島 (Miyakojima)", name: "石田ヴィレッジ", address: "Miyakojima, Okinawa", tags: ["Village", "Resort"], link: "#" },
+            { area: "伊豆 (Izu)", name: "GLOCE一碧ハウス", address: "Ippeki, Izu", tags: ["Nature"], link: "#" },
+            { area: "沖縄 (Okinawa)", name: "ユイマール恩納1", address: "Onna, Okinawa", tags: ["Resort"], link: "#" },
+            { area: "千葉 (Chiba)", name: "GLOCE RIN", address: "Chiba", tags: ["Modern"], link: "#" },
+            { area: "広島 (Hiroshima)", name: "761-3 Akitsucho Kazahaya", address: "Akitsucho, Hiroshima", tags: ["Sea Side"], link: "#" }
+        ];
+    
+        // --- Translations ---
+        const translations = {
+            th: {
+                headerTitle: "ที่พักของเรา",
+                footerCouponTitle: "มีคูปองส่วนลดใช่ไหม?",
+                footerCouponDesc: "ดูวิธีการใช้งานคูปองและข้อกำหนดต่างๆ ได้ที่นี่",
+                footerBtnText: "คู่มือการใช้งานคูปอง",
+                viewDetails: "ดูรายละเอียด",
+                areaMapping: {
+                    "逗子 (Zushi)": "ซูชิ (Zushi)", "葉山 (Hayama)": "ฮายามะ (Hayama)",
+                    "鎌倉 (Kamakura)": "คามาคุระ (Kamakura)", "横須賀 (Yokosuka)": "โยโกสุกะ (Yokosuka)",
+                    "美幌 (Bihoro)": "บิโฮโร (Bihoro)", "宮古島 (Miyakojima)": "มิยาโกจิมะ (Miyakojima)",
+                    "伊豆 (Izu)": "อิซุ (Izu)", "沖縄 (Okinawa)": "โอกินาว่า (Okinawa)",
+                    "千葉 (Chiba)": "ชิบะ (Chiba)", "広島 (Hiroshima)": "ฮิโรชิม่า (Hiroshima)"
+                }
+            },
+            en: {
+                headerTitle: "Our Accommodations",
+                footerCouponTitle: "Have a Discount Coupon?",
+                footerCouponDesc: "Check out how to use your coupon and terms here.",
+                footerBtnText: "Coupon User Guide",
+                viewDetails: "View Details",
+                areaMapping: {
+                    "逗子 (Zushi)": "Zushi", "葉山 (Hayama)": "Hayama",
+                    "鎌倉 (Kamakura)": "Kamakura", "横須賀 (Yokosuka)": "Yokosuka",
+                    "美幌 (Bihoro)": "Bihoro", "宮古島 (Miyakojima)": "Miyakojima",
+                    "伊豆 (Izu)": "Izu", "沖縄 (Okinawa)": "Okinawa",
+                    "千葉 (Chiba)": "Chiba", "広島 (Hiroshima)": "Hiroshima"
+                }
+            },
+            jp: {
+                headerTitle: "宿泊施設一覧",
+                footerCouponTitle: "割引クーポンをお持ちですか？",
+                footerCouponDesc: "クーポンの利用方法や条件はこちらでご確認ください。",
+                footerBtnText: "クーポン利用ガイド",
+                viewDetails: "詳細を見る",
+                areaMapping: {}
+            }
+        };
+    
+        let currentLang = 'th';
+    
+        // --- Functions ---
+        window.gloceV3SetLang = function(lang) {
+            currentLang = lang;
+            
+            // Buttons
+            ['th','en','jp'].forEach(l => {
+                const btn = document.getElementById(`gloce_v3_btn_${l}`);
+                if(btn) btn.classList.toggle('active', l === lang);
+            });
+    
+            // Static Texts
+            const t = translations[lang];
+            setText('gloce_v3_header_title', t.headerTitle);
+            setText('gloce_v3_footer_title', t.footerCouponTitle);
+            setText('gloce_v3_footer_desc', t.footerCouponDesc);
+            setText('gloce_v3_footer_btn_text', t.footerBtnText);
+            
+            render();
+        };
+    
+        function setText(id, txt) {
+            const el = document.getElementById(id);
+            if(el) el.textContent = txt;
+        }
+    
+        function localizeUrl(url, lang) {
+            if (!url || !url.startsWith('http')) return url;
+            const targetLang = (lang === 'jp') ? 'ja' : 'en';
+            if (url.includes('/ja/') || url.includes('/en/')) {
+                return url.replace(/\/(ja|en)\//, `/${targetLang}/`);
+            }
+            return url;
+        }
+    
+        function stringToColor(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                hash = str.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            const c = (hash & 0x00FFFFFF).toString(16).toUpperCase();
+            return '#' + '00000'.substring(0, 6 - c.length) + c;
+        }
+    
+        function render() {
+            const container = document.getElementById('gloce_v3_content');
+            if(!container) return;
+            
+            container.innerHTML = '';
+            const t = translations[currentLang];
+    
+            const grouped = properties.reduce((acc, item) => {
+                if (!acc[item.area]) acc[item.area] = [];
+                acc[item.area].push(item);
+                return acc;
+            }, {});
+    
+            for (const [originalAreaName, items] of Object.entries(grouped)) {
+                let displayAreaName = originalAreaName;
+                if (currentLang !== 'jp' && t.areaMapping[originalAreaName]) {
+                    displayAreaName = t.areaMapping[originalAreaName];
+                }
+    
+                const section = document.createElement('div');
+                const title = document.createElement('h3');
+                title.className = 'gloce-section-title';
+                title.textContent = displayAreaName;
+                section.appendChild(title);
+    
+                const grid = document.createElement('div');
+                grid.className = 'gloce-grid';
+    
+                items.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'gloce-card';
+    
+                    // Image Logic
+                    let imageHtml;
+                    if(item.image) {
+                        imageHtml = `<img src="${item.image}" alt="${item.name}" class="gloce-card-img">`;
+                    } else {
+                        const color = stringToColor(item.name);
+                        imageHtml = `<div class="gloce-card-placeholder" style="background-color: ${color}"><i class="fa-solid fa-hotel opacity-50"></i></div>`;
+                    }
+    
+                    // Address & Link Logic
+                    let addressHtml = `<span><i class="fa-solid fa-location-dot" style="color:#059669; margin-right:5px;"></i> ${item.address}</span>`;
+                    if (item.mapLink) {
+                        addressHtml = `<a href="${item.mapLink}" target="_blank" title="Google Maps">${addressHtml}</a>`;
+                    }
+    
+                    const finalLink = localizeUrl(item.link, currentLang);
+                    
+                    // Tags
+                    const tagsHtml = item.tags.map(tag => `<span class="gloce-tag">${tag}</span>`).join('');
+    
+                    card.innerHTML = `
+                        ${imageHtml}
+                        <div class="gloce-card-body">
+                            <div>
+                                <h4 class="gloce-card-title">${item.name}</h4>
+                                <div class="gloce-card-address">${addressHtml}</div>
+                                <div class="gloce-tags">${tagsHtml}</div>
+                            </div>
+                            <a href="${finalLink}" target="_blank" class="gloce-btn">
+                                <i class="fa-solid fa-eye" style="margin-right: 5px;"></i> ${t.viewDetails}
+                            </a>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+    
+                section.appendChild(grid);
+                container.appendChild(section);
+            }
+        }
+    
+        // Init with retry
+        function init() {
+            if(document.getElementById('gloce_v3_content')) {
+                gloceV3SetLang('th');
+            } else {
+                setTimeout(init, 500);
+            }
+        }
+        
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+    })();
+    </script>
+</body>
+</html>
