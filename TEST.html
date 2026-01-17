@@ -3,21 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>รายการที่พักของเรา</title>
-    <!-- Google Fonts: Sarabun สำหรับภาษาไทย และ Roboto สำหรับอังกฤษ -->
+    <title>รายการที่พักของเรา | GLOCE Accommodations</title>
+    
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS (ผ่าน CDN เพื่อความสวยงามและ Responsive) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- FontAwesome สำหรับไอคอน -->
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Sarabun', 'Roboto', 'sans-serif'],
+                    },
+                    colors: {
+                        emerald: {
+                            50: '#ecfdf5',
+                            100: '#d1fae5',
+                            500: '#10b981',
+                            600: '#059669',
+                            700: '#047857',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
 
     <style>
         body {
             font-family: 'Sarabun', 'Roboto', sans-serif;
             background-color: #f3f4f6;
         }
+        /* ปุ่มเปลี่ยนภาษา */
         .lang-btn {
             transition: all 0.3s ease;
         }
@@ -26,12 +50,13 @@
             color: #10b981; /* emerald-500 */
             font-weight: bold;
         }
+        /* การ์ด */
         .property-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         .property-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
@@ -56,8 +81,7 @@
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 py-8 flex-grow">
-        <div id="content-area">
-            <!-- Content will be injected here by JS -->
+        <div id="content-area" class="min-h-[200px]">
             <div class="text-center py-10">
                 <i class="fa-solid fa-circle-notch fa-spin text-4xl text-emerald-600"></i>
                 <p class="mt-4 text-gray-500">กำลังโหลดข้อมูล...</p>
@@ -66,13 +90,13 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white pt-8 pb-6">
+    <footer class="bg-gray-800 text-white pt-8 pb-6 mt-auto">
         <div class="container mx-auto px-4 text-center">
             <div class="mb-6">
-                <i class="fa-solid fa-ticket text-yellow-400 text-3xl mb-3"></i>
+                <i class="fa-solid fa-ticket text-yellow-400 text-3xl mb-3 inline-block"></i>
                 <h3 id="footer-coupon-title" class="text-lg font-bold mb-2">มีคูปองส่วนลดใช่ไหม?</h3>
                 <p id="footer-coupon-desc" class="text-gray-400 mb-4">ดูวิธีการใช้งานคูปองและข้อกำหนดต่างๆ ได้ที่นี่</p>
-                <a href="#" class="inline-block bg-yellow-500 hover:bg-yellow-400 text-gray-900 font-bold py-2 px-6 rounded-full transition duration-300">
+                <a href="#" class="inline-flex items-center bg-yellow-500 hover:bg-yellow-400 text-gray-900 font-bold py-2 px-6 rounded-full transition duration-300 no-underline">
                     <i class="fa-solid fa-book-open mr-2"></i>
                     <span id="footer-btn-text">คู่มือการใช้งานคูปอง</span>
                 </a>
@@ -84,8 +108,7 @@
     </footer>
 
     <script>
-        // --- ข้อมูลจำลอง (Mock Data) ---
-        // ใส่ลิงก์เพียงครั้งเดียวในช่อง link ระบบจะแปลงภาษาให้เอง
+        // 1. ข้อมูลที่พัก (Data)
         const properties = [
             { 
                 area: "逗子 (Zushi)", 
@@ -114,39 +137,26 @@
                 mapLink: "https://maps.app.goo.gl/iaxiDW4pammT9Kwq6",
                 image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2044969/picture/1714610463-b3.jpg"
             },
-            
-            { 
-                area: "葉山 (Hayama)", 
-                name: "1816-2 Horiuchi", 
-                address: "Horiuchi, Hayama", 
-                tags: ["Ocean View"], link: "#" },
+            { area: "葉山 (Hayama)", name: "1816-2 Horiuchi", address: "Horiuchi, Hayama", tags: ["Ocean View"], link: "#" },
             { area: "葉山 (Hayama)", name: "GLOCE 葉山のサーファーズログハウス", address: "Hayama", tags: ["Log House", "Surfing"], link: "#" },
             { area: "葉山 (Hayama)", name: "GLOCE 葉山の古民家 ～囲炉裏でＢＢＱ～", address: "Hayama", tags: ["Traditional", "BBQ"], link: "#" },
             { area: "葉山 (Hayama)", name: "GLOCE ゲストハウス一色 in Hayama", address: "Isshiki, Hayama", tags: ["Guesthouse"], link: "#" },
             { area: "葉山 (Hayama)", name: "GLOCE Hayama near Morito Beach", address: "Morito, Hayama", tags: ["Beach"], link: "#" },
-            
             { area: "鎌倉 (Kamakura)", name: "「海行燈」一軒貸切の宿", address: "Koshigoe, Kamakura", tags: ["Private Rental"], link: "#" },
             { area: "鎌倉 (Kamakura)", name: "GLOCE 鎌倉 若宮大路House", address: "Wakamiya, Kamakura", tags: ["City Center"], link: "#" },
             { area: "鎌倉 (Kamakura)", name: "2 Chome-17-24 Hase", address: "Hase, Kamakura", tags: ["Near Temple"], link: "#" },
-            
             { area: "横須賀 (Yokosuka)", name: "GLOCE 横須賀 SHARE ROOM @NAVY BASE", address: "Yokosuka", tags: ["Share Room"], link: "#" },
             { area: "横須賀 (Yokosuka)", name: "GLOCE ゲストルーム 2min walk to NAVY BASE", address: "Yokosuka", tags: ["Guest Room"], link: "#" },
-            
             { area: "美幌 (Bihoro)", name: "GLOCE Guestroom Bihoro", address: "Bihoro, Hokkaido", tags: ["Hokkaido"], link: "#" },
             { area: "美幌 (Bihoro)", name: "GLOCE Bihoro ゲストハウス 丘宿", address: "Bihoro, Hokkaido", tags: ["Guesthouse"], link: "#" },
-            
             { area: "宮古島 (Miyakojima)", name: "石田ヴィレッジ", address: "Miyakojima, Okinawa", tags: ["Village", "Resort"], link: "#" },
-            
             { area: "伊豆 (Izu)", name: "GLOCE一碧ハウス", address: "Ippeki, Izu", tags: ["Nature"], link: "#" },
-            
             { area: "沖縄 (Okinawa)", name: "ユイマール恩納1", address: "Onna, Okinawa", tags: ["Resort"], link: "#" },
-            
             { area: "千葉 (Chiba)", name: "GLOCE RIN", address: "Chiba", tags: ["Modern"], link: "#" },
-            
             { area: "広島 (Hiroshima)", name: "761-3 Akitsucho Kazahaya", address: "Akitsucho, Hiroshima", tags: ["Sea Side"], link: "#" }
         ];
 
-        // --- ระบบแปลภาษา (Translations) ---
+        // 2. คำแปล (Translations)
         const translations = {
             th: {
                 headerTitle: "ที่พักของเรา",
@@ -156,16 +166,11 @@
                 location: "ที่อยู่",
                 viewDetails: "ดูรายละเอียด",
                 areaMapping: {
-                    "逗子 (Zushi)": "ซูชิ (Zushi)",
-                    "葉山 (Hayama)": "ฮายามะ (Hayama)",
-                    "鎌倉 (Kamakura)": "คามาคุระ (Kamakura)",
-                    "横須賀 (Yokosuka)": "โยโกสุกะ (Yokosuka)",
-                    "美幌 (Bihoro)": "บิโฮโร (Bihoro)",
-                    "宮古島 (Miyakojima)": "มิยาโกจิมะ (Miyakojima)",
-                    "伊豆 (Izu)": "อิซุ (Izu)",
-                    "沖縄 (Okinawa)": "โอกินาว่า (Okinawa)",
-                    "千葉 (Chiba)": "ชิบะ (Chiba)",
-                    "広島 (Hiroshima)": "ฮิโรชิม่า (Hiroshima)"
+                    "逗子 (Zushi)": "ซูชิ (Zushi)", "葉山 (Hayama)": "ฮายามะ (Hayama)",
+                    "鎌倉 (Kamakura)": "คามาคุระ (Kamakura)", "横須賀 (Yokosuka)": "โยโกสุกะ (Yokosuka)",
+                    "美幌 (Bihoro)": "บิโฮโร (Bihoro)", "宮古島 (Miyakojima)": "มิยาโกจิมะ (Miyakojima)",
+                    "伊豆 (Izu)": "อิซุ (Izu)", "沖縄 (Okinawa)": "โอกินาว่า (Okinawa)",
+                    "千葉 (Chiba)": "ชิบะ (Chiba)", "広島 (Hiroshima)": "ฮิโรชิม่า (Hiroshima)"
                 }
             },
             en: {
@@ -176,16 +181,11 @@
                 location: "Location",
                 viewDetails: "View Details",
                 areaMapping: {
-                    "逗子 (Zushi)": "Zushi",
-                    "葉山 (Hayama)": "Hayama",
-                    "鎌倉 (Kamakura)": "Kamakura",
-                    "横須賀 (Yokosuka)": "Yokosuka",
-                    "美幌 (Bihoro)": "Bihoro",
-                    "宮古島 (Miyakojima)": "Miyakojima",
-                    "伊豆 (Izu)": "Izu",
-                    "沖縄 (Okinawa)": "Okinawa",
-                    "千葉 (Chiba)": "Chiba",
-                    "広島 (Hiroshima)": "Hiroshima"
+                    "逗子 (Zushi)": "Zushi", "葉山 (Hayama)": "Hayama",
+                    "鎌倉 (Kamakura)": "Kamakura", "横須賀 (Yokosuka)": "Yokosuka",
+                    "美幌 (Bihoro)": "Bihoro", "宮古島 (Miyakojima)": "Miyakojima",
+                    "伊豆 (Izu)": "Izu", "沖縄 (Okinawa)": "Okinawa",
+                    "千葉 (Chiba)": "Chiba", "広島 (Hiroshima)": "Hiroshima"
                 }
             },
             jp: {
@@ -195,45 +195,47 @@
                 footerBtnText: "クーポン利用ガイド",
                 location: "住所",
                 viewDetails: "詳細を見る",
-                areaMapping: {} // JP uses original names
+                areaMapping: {}
             }
         };
 
         let currentLang = 'th';
 
+        // 3. ฟังก์ชันหลัก (Core Functions)
         function setLanguage(lang) {
             currentLang = lang;
             
-            // Update Active Button State
+            // Update Buttons
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
             document.getElementById(`btn-${lang}`).classList.add('active');
             
-            // Update Static Text
+            // Update Text
             const t = translations[lang];
             document.getElementById('header-title').textContent = t.headerTitle;
             document.getElementById('footer-coupon-title').textContent = t.footerCouponTitle;
             document.getElementById('footer-coupon-desc').textContent = t.footerCouponDesc;
             document.getElementById('footer-btn-text').textContent = t.footerBtnText;
             
-            // Re-render Content
+            // Re-render
             renderProperties();
         }
 
-        // ฟังก์ชันแปลงลิงก์ให้ตรงกับภาษาโดยอัตโนมัติ
         function localizeUrl(url, lang) {
             if (!url || !url.startsWith('http')) return url;
-
-            // กำหนดเป้าหมายภาษา: TH/EN -> 'en', JP -> 'ja'
-            // (สมมติว่าเว็บจองไม่มีภาษาไทยโดยตรง ให้ใช้ภาษาอังกฤษแทน)
             const targetLang = (lang === 'jp') ? 'ja' : 'en';
-
-            // ตรวจสอบว่าเป็นลิงก์ที่รองรับรูปแบบ /ja/ หรือ /en/ หรือไม่ (เช่น AirHost)
-            // ถ้าเจอ /ja/ หรือ /en/ จะเปลี่ยนให้เป็นภาษาปัจจุบัน
             if (url.includes('/ja/') || url.includes('/en/')) {
                 return url.replace(/\/(ja|en)\//, `/${targetLang}/`);
             }
-            
             return url;
+        }
+
+        function stringToColor(str) {
+            let hash = 0;
+            for (let i = 0; i < str.length; i++) {
+                hash = str.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            const c = (hash & 0x00FFFFFF).toString(16).toUpperCase();
+            return '#' + '00000'.substring(0, 6 - c.length) + c;
         }
 
         function renderProperties() {
@@ -251,23 +253,19 @@
 
             // Generate HTML
             for (const [originalAreaName, items] of Object.entries(grouped)) {
-                // Determine Display Name for Area
                 let displayAreaName = originalAreaName;
                 if (currentLang !== 'jp' && t.areaMapping[originalAreaName]) {
                     displayAreaName = t.areaMapping[originalAreaName];
                 }
 
-                // Section Container
                 const section = document.createElement('div');
                 section.className = 'mb-12';
 
-                // Section Title
                 const title = document.createElement('h2');
                 title.className = 'text-2xl font-bold text-gray-800 border-l-4 border-emerald-500 pl-3 mb-6';
                 title.textContent = displayAreaName;
                 section.appendChild(title);
 
-                // Grid Container
                 const grid = document.createElement('div');
                 grid.className = 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6';
 
@@ -277,16 +275,13 @@
                     
                     const headerColor = stringToColor(item.name);
                     
-                    // Logic เพื่อสร้าง HTML สำหรับที่อยู่ (ถ้ามี mapLink ให้เป็น <a>)
                     let addressHtml = `<i class="fa-solid fa-location-dot mr-1 text-emerald-500"></i> ${item.address}`;
                     if (item.mapLink) {
-                        addressHtml = `<a href="${item.mapLink}" target="_blank" class="hover:text-emerald-700 hover:underline transition-colors" title="ดูแผนที่ Google Maps">${addressHtml}</a>`;
+                        addressHtml = `<a href="${item.mapLink}" target="_blank" class="hover:text-emerald-700 hover:underline transition-colors text-gray-500" title="Google Maps">${addressHtml}</a>`;
                     }
 
-                    // สร้างลิงก์ที่ปรับตามภาษา (Localized Link)
                     const localizedLink = localizeUrl(item.link, currentLang);
 
-                    // Logic สำหรับรูปภาพปก (ถ้ามีรูปใช้รูป ถ้าไม่มีใช้สี Placeholder)
                     let imageHtml;
                     if (item.image) {
                         imageHtml = `
@@ -307,14 +302,14 @@
                         <div class="p-5 flex-grow flex flex-col justify-between">
                             <div>
                                 <h3 class="font-bold text-lg mb-2 text-gray-800 line-clamp-2">${item.name}</h3>
-                                <p class="text-gray-500 text-sm mb-3">
+                                <p class="text-gray-500 text-sm mb-3 mt-2">
                                     ${addressHtml}
                                 </p>
                                 <div class="flex flex-wrap gap-2 mb-4">
                                     ${item.tags.map(tag => `<span class="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-md">${tag}</span>`).join('')}
                                 </div>
                             </div>
-                            <a href="${localizedLink}" target="_blank" class="w-full mt-auto py-2 border border-emerald-500 text-emerald-600 rounded hover:bg-emerald-50 transition-colors text-sm font-semibold flex items-center justify-center">
+                            <a href="${localizedLink}" target="_blank" class="w-full mt-auto py-2 border border-emerald-500 text-emerald-600 rounded hover:bg-emerald-50 transition-colors text-sm font-semibold flex items-center justify-center no-underline">
                                 <i class="fa-solid fa-eye mr-2"></i> ${t.viewDetails}
                             </a>
                         </div>
@@ -327,19 +322,10 @@
             }
         }
 
-        // Helper to generate consistent pastel color from string (for placeholders)
-        function stringToColor(str) {
-            let hash = 0;
-            for (let i = 0; i < str.length; i++) {
-                hash = str.charCodeAt(i) + ((hash << 5) - hash);
-            }
-            const c = (hash & 0x00FFFFFF).toString(16).toUpperCase();
-            return '#' + '00000'.substring(0, 6 - c.length) + c;
-        }
-
         // Initialize
-        setLanguage('th');
-
+        document.addEventListener('DOMContentLoaded', () => {
+            setLanguage('th');
+        });
     </script>
 </body>
 </html>
