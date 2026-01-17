@@ -1,5 +1,5 @@
 <!-- ========================================== -->
-<!-- Version 3.2: Safe Mode + Coupon Boxes + Full Data Fields -->
+<!-- Version 3.11: List Search Default Collapsed -->
 <!-- ========================================== -->
 
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
@@ -15,15 +15,15 @@
         box-sizing: border-box;
         padding: 20px;
         border-radius: 8px;
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
-    #gloce_v3_root * {
-        box-sizing: border-box;
-    }
+    #gloce_v3_root * { box-sizing: border-box; }
 
-    /* 1. Main Header (Green Bar) */
+    /* --- Header --- */
     .gloce-header {
-        background-color: #059669; /* emerald-600 */
+        background-color: #059669;
         color: white;
         padding: 20px;
         border-radius: 8px;
@@ -35,7 +35,6 @@
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         gap: 15px;
     }
-
     .gloce-header-title {
         font-size: 1.5rem;
         font-weight: bold;
@@ -45,8 +44,6 @@
         align-items: center;
         gap: 10px;
     }
-
-    /* Language Buttons */
     .gloce-lang-group {
         display: flex;
         gap: 5px;
@@ -54,7 +51,6 @@
         padding: 4px;
         border-radius: 6px;
     }
-
     .gloce-lang-btn {
         background: transparent;
         border: 1px solid transparent;
@@ -65,195 +61,199 @@
         font-size: 0.9rem;
         transition: all 0.2s;
     }
-
-    .gloce-lang-btn:hover { color: white; }
     .gloce-lang-btn.active {
         background-color: white;
         color: #059669;
         font-weight: bold;
     }
 
-    /* 2. Coupon Box (Black Box) */
+    /* --- Coupon Box --- */
     .gloce-coupon-box {
-        background-color: #1f2937; /* gray-800 */
+        background-color: #1f2937;
         color: white;
         text-align: center;
         padding: 30px 20px;
         border-radius: 8px;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
-
-    .gloce-coupon-icon {
-        font-size: 2rem;
-        color: #fbbf24; /* amber-400 */
-        margin-bottom: 10px;
-        display: inline-block;
-    }
-
-    .gloce-coupon-title {
-        margin: 0 0 10px 0 !important;
-        color: white !important;
-        font-size: 1.2rem;
-        font-weight: bold;
-    }
-
-    .gloce-coupon-desc {
-        color: #9ca3af;
-        margin-bottom: 15px !important;
-        font-size: 0.95rem;
-    }
-    
+    .gloce-coupon-icon { font-size: 2rem; color: #fbbf24; margin-bottom: 10px; display: inline-block; }
+    .gloce-coupon-title { margin: 0 0 10px 0 !important; color: white !important; font-size: 1.2rem; font-weight: bold; }
+    .gloce-coupon-desc { color: #9ca3af; margin-bottom: 15px !important; font-size: 0.95rem; }
     .gloce-coupon-btn {
-        display: inline-flex;
-        align-items: center;
-        background-color: #fbbf24;
-        color: #111827;
-        padding: 10px 24px;
-        border-radius: 9999px;
-        text-decoration: none !important;
-        font-weight: bold;
-        margin-top: 10px;
-        transition: background-color 0.2s;
+        display: inline-flex; align-items: center; background-color: #fbbf24; color: #111827;
+        padding: 10px 24px; border-radius: 9999px; text-decoration: none !important; font-weight: bold;
+        margin-top: 10px; transition: background-color 0.2s;
     }
-    
-    .gloce-coupon-btn:hover {
-        background-color: #f59e0b;
-    }
+    .gloce-coupon-btn:hover { background-color: #f59e0b; }
 
-    /* 3. Grid & Cards */
-    .gloce-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 20px;
-        margin-bottom: 40px;
-    }
-
-    .gloce-card {
+    /* --- Filter Section Container --- */
+    .gloce-filter-section {
         background: white;
-        border: 1px solid #e5e7eb;
         border-radius: 8px;
-        overflow: hidden;
-        transition: transform 0.2s;
-        display: flex;
-        flex-direction: column;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-    .gloce-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        border: 1px solid #e5e7eb;
+        margin-bottom: 20px; /* Space between sections */
+        overflow: hidden; 
     }
 
-    .gloce-card-img {
-        height: 200px;
-        width: 100%;
-        object-fit: cover;
+    .gloce-filter-header {
+        padding: 15px 20px;
+        background-color: #f3f4f6;
+        border-bottom: 1px solid #e5e7eb;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        user-select: none;
+    }
+    .gloce-filter-header:hover {
         background-color: #e5e7eb;
     }
-    
-    .gloce-card-placeholder {
-        height: 200px;
-        width: 100%;
+    .gloce-filter-header-title {
+        font-weight: bold;
+        color: #374151;
         display: flex;
         align-items: center;
-        justify-content: center;
-        font-size: 2rem;
-        color: white;
+        gap: 8px;
+    }
+    .gloce-filter-toggle-icon {
+        color: #6b7280;
+        transition: transform 0.3s;
+    }
+    .gloce-filter-header.collapsed .gloce-filter-toggle-icon {
+        transform: rotate(-90deg);
+    }
+    /* Remove bottom border if collapsed to look cleaner */
+    .gloce-filter-header.collapsed {
+        border-bottom: none;
     }
 
-    .gloce-card-body {
+    .gloce-filter-body {
         padding: 20px;
-        flex-grow: 1;
+        display: block; 
+        transition: all 0.3s ease-in-out;
+    }
+    .gloce-filter-body.hidden {
+        display: none;
+    }
+
+    /* --- MAP Styling --- */
+    .gloce-map-container {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-    }
-
-    .gloce-card-title {
-        font-size: 1.125rem;
-        font-weight: bold;
-        margin: 0 0 10px 0 !important;
-        color: #1f2937;
-        line-height: 1.4;
-    }
-
-    .gloce-card-address {
-        font-size: 0.875rem;
-        color: #6b7280;
-        margin-bottom: 15px;
-        display: flex;
         align-items: center;
     }
-    .gloce-card-address a { color: #6b7280; text-decoration: none; }
-    .gloce-card-address a:hover { color: #059669; text-decoration: underline; }
+    .gloce-japan-map {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+    }
+    .map-region {
+        fill: #e5e7eb;
+        stroke: #fff;
+        stroke-width: 1;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .map-region:hover {
+        fill: #6ee7b7; /* emerald-300 */
+    }
+    .map-region.active {
+        fill: #059669; /* emerald-600 */
+    }
+    .map-label {
+        font-size: 12px;
+        font-weight: bold;
+        fill: #374151;
+        pointer-events: none;
+        text-anchor: middle;
+    }
 
-    .gloce-tags {
+    /* --- Filter Buttons Grouped --- */
+    .gloce-region-group {
+        margin-bottom: 15px;
+        border-bottom: 1px dashed #f0f0f0;
+        padding-bottom: 10px;
+    }
+    .gloce-region-group:last-child {
+        border-bottom: none;
+    }
+    .gloce-region-label {
+        font-size: 0.85rem;
+        color: #9ca3af;
+        margin-bottom: 6px;
+        font-weight: bold;
+        display: block;
+        text-transform: uppercase;
+    }
+    .gloce-filter-buttons {
         display: flex;
         flex-wrap: wrap;
         gap: 8px;
-        margin-bottom: 15px;
     }
-
-    .gloce-tag {
-        background-color: #f3f4f6;
+    .gloce-filter-btn {
+        padding: 5px 12px;
+        border: 1px solid #d1d5db;
+        background-color: white;
+        border-radius: 15px;
         color: #4b5563;
-        font-size: 0.75rem;
-        padding: 4px 8px;
-        border-radius: 4px;
-    }
-
-    .gloce-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #059669;
-        color: #059669;
-        background: transparent;
-        border-radius: 6px;
-        text-decoration: none !important;
-        font-weight: bold;
-        font-size: 0.9rem;
+        cursor: pointer;
+        font-size: 0.85rem;
         transition: all 0.2s;
-        margin-top: auto;
     }
-    .gloce-btn:hover { background-color: #ecfdf5; }
-
-    .gloce-section-title {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #374151;
-        border-left: 5px solid #059669;
-        padding-left: 15px;
-        margin: 30px 0 20px 0 !important;
-    }
-
-    .gloce-loading {
-        text-align: center;
-        padding: 50px;
-        color: #059669;
-        font-size: 1.2rem;
+    .gloce-filter-btn:hover { border-color: #059669; color: #059669; background-color: #ecfdf5; }
+    .gloce-filter-btn.active {
+        background-color: #059669; color: white; border-color: #059669; font-weight: bold;
     }
     
-    .gloce-copyright {
-        margin-top: 30px;
-        border-top: 1px solid #374151;
-        padding-top: 20px;
-        font-size: 0.8rem;
-        color: #6b7280;
+    .gloce-reset-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        margin-top: 15px;
+        background: none;
+        border: 1px solid #9ca3af;
+        padding: 6px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.9rem;
+        color: #4b5563;
+        transition: all 0.2s;
     }
+    .gloce-reset-btn:hover { background-color: #f3f4f6; color: #333; }
+
+    /* --- Cards Content Area --- */
+    #gloce_v3_content {
+        scroll-margin-top: 20px; 
+    }
+
+    /* --- Cards --- */
+    .gloce-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-bottom: 40px; }
+    .gloce-card { background: white; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; transition: transform 0.2s; display: flex; flex-direction: column; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .gloce-card:hover { transform: translateY(-5px); box-shadow: 0 10px 15px rgba(0,0,0,0.1); }
+    .gloce-card-img { height: 200px; width: 100%; object-fit: cover; background-color: #e5e7eb; }
+    .gloce-card-placeholder { height: 200px; width: 100%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: white; }
+    .gloce-card-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .gloce-card-title { font-size: 1.125rem; font-weight: bold; margin: 0 0 10px 0 !important; color: #1f2937; line-height: 1.4; }
+    .gloce-card-address { font-size: 0.875rem; color: #6b7280; margin-bottom: 15px; display: flex; align-items: center; }
+    .gloce-card-address a { color: #6b7280; text-decoration: none; }
+    .gloce-card-address a:hover { color: #059669; text-decoration: underline; }
+    .gloce-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 15px; }
+    .gloce-tag { background-color: #f3f4f6; color: #4b5563; font-size: 0.75rem; padding: 4px 8px; border-radius: 4px; }
+    .gloce-btn { display: flex; align-items: center; justify-content: center; width: 100%; padding: 10px; border: 1px solid #059669; color: #059669; background: transparent; border-radius: 6px; text-decoration: none !important; font-weight: bold; font-size: 0.9rem; transition: all 0.2s; margin-top: auto; }
+    .gloce-btn:hover { background-color: #ecfdf5; }
+    .gloce-section-title { font-size: 1.5rem; font-weight: bold; color: #374151; border-left: 5px solid #059669; padding-left: 15px; margin: 30px 0 20px 0 !important; }
+    .gloce-loading { text-align: center; padding: 50px; color: #059669; font-size: 1.2rem; }
+    .gloce-copyright { margin-top: 30px; border-top: 1px solid #374151; padding-top: 20px; font-size: 0.8rem; color: #6b7280; }
 
     @media (max-width: 600px) {
         .gloce-header { flex-direction: column; text-align: center; }
         .gloce-header-title { justify-content: center; margin-bottom: 15px !important; }
-        .gloce-lang-group { width: 100%; justify-content: center; }
-        .gloce-lang-btn { flex-grow: 1; }
     }
 </style>
 
 <div id="gloce_v3_root">
 
-    <!-- 1. Header (Green) -->
+    <!-- 1. Header -->
     <div class="gloce-header">
         <div class="gloce-header-title">
             <i class="fa-solid fa-house-chimney"></i>
@@ -266,30 +266,116 @@
         </div>
     </div>
 
-    <!-- 2. Top Coupon Box (Black) -->
+    <!-- 2. Top Coupon Box -->
     <div class="gloce-coupon-box">
         <i class="fa-solid fa-ticket gloce-coupon-icon"></i>
         <h3 id="gloce_v3_top_coupon_title" class="gloce-coupon-title">มีคูปองส่วนลดใช่ไหม?</h3>
         <p id="gloce_v3_top_coupon_desc" class="gloce-coupon-desc">ดูวิธีการใช้งานคูปองและข้อกำหนดต่างๆ ได้ที่นี่</p>
-        <a href="#" class="gloce-coupon-btn">
+        <!-- Added ID for script targeting -->
+        <a href="#" id="gloce_coupon_btn_top" class="gloce-coupon-btn" target="_blank">
             <i class="fa-solid fa-book-open" style="margin-right: 8px;"></i>
             <span id="gloce_v3_top_coupon_btn_text">คู่มือการใช้งานคูปอง</span>
         </a>
     </div>
 
-    <!-- 3. Content Area -->
+    <!-- 3.1. Collapsible Filter: MAP -->
+    <div class="gloce-filter-section">
+        <div class="gloce-filter-header" onclick="gloceV3ToggleSection('map')">
+            <div class="gloce-filter-header-title">
+                <i class="fa-solid fa-map-location-dot text-emerald-600" style="color:#059669;"></i>
+                <span id="gloce_filter_map_label">ค้นหาจากแผนที่ (Map Search)</span>
+            </div>
+            <i id="gloce_filter_icon_map" class="fa-solid fa-chevron-down gloce-filter-toggle-icon"></i>
+        </div>
+
+        <div id="gloce_filter_body_map" class="gloce-filter-body">
+            <div class="gloce-map-container">
+                <div style="font-size:0.9rem; color:#6b7280; margin-bottom:10px;">
+                    <span id="gloce_map_instruction">เลือกภูมิภาคจากแผนที่</span>
+                </div>
+                
+                <!-- SVG Map -->
+                <svg class="gloce-japan-map" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Hokkaido -->
+                    <path id="map_Hokkaido" class="map-region" d="M380,20 L450,10 L480,50 L420,100 L370,80 Z" onclick="gloceV3SetFilter('Region', 'Hokkaido')"></path>
+                    <text x="420" y="60" class="map-label">Hokkaido</text>
+
+                    <!-- Tohoku -->
+                    <path id="map_Tohoku" class="map-region" d="M370,85 L420,105 L400,180 L350,160 Z" onclick="gloceV3SetFilter('Region', 'Tohoku')"></path>
+                    <text x="385" y="140" class="map-label">Tohoku</text>
+
+                    <!-- Kanto -->
+                    <path id="map_Kanto" class="map-region" d="M350,160 L400,180 L380,220 L340,200 Z" onclick="gloceV3SetFilter('Region', 'Kanto')"></path>
+                    <text x="370" y="195" class="map-label">Kanto</text>
+
+                    <!-- Chubu -->
+                    <path id="map_Chubu" class="map-region" d="M300,150 L350,160 L340,200 L310,210 L280,180 Z" onclick="gloceV3SetFilter('Region', 'Chubu')"></path>
+                    <text x="315" y="180" class="map-label">Chubu</text>
+
+                    <!-- Kansai -->
+                    <path id="map_Kansai" class="map-region" d="M260,180 L300,150 L280,180 L290,220 L250,210 Z" onclick="gloceV3SetFilter('Region', 'Kansai')"></path>
+                    <text x="270" y="200" class="map-label">Kansai</text>
+
+                    <!-- Chugoku -->
+                    <path id="map_Chugoku" class="map-region" d="M180,180 L260,180 L250,210 L190,200 Z" onclick="gloceV3SetFilter('Region', 'Chugoku')"></path>
+                    <text x="220" y="195" class="map-label">Chugoku</text>
+
+                    <!-- Shikoku -->
+                    <path id="map_Shikoku" class="map-region" d="M200,215 L250,220 L240,250 L210,240 Z" onclick="gloceV3SetFilter('Region', 'Shikoku')"></path>
+
+                    <!-- Kyushu -->
+                    <path id="map_Kyushu" class="map-region" d="M130,200 L180,200 L170,260 L120,240 Z" onclick="gloceV3SetFilter('Region', 'Kyushu')"></path>
+                    <text x="150" y="230" class="map-label">Kyushu</text>
+
+                    <!-- Okinawa -->
+                    <path id="map_Okinawa" class="map-region" d="M50,320 L100,310 L90,350 L40,340 Z" onclick="gloceV3SetFilter('Region', 'Okinawa')"></path>
+                    <text x="70" y="335" class="map-label">Okinawa</text>
+                    
+                    <line x1="120" y1="240" x2="80" y2="310" stroke="#ccc" stroke-dasharray="4" />
+                </svg>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3.2. Collapsible Filter: LIST (Default Hidden) -->
+    <div class="gloce-filter-section">
+        <!-- Add 'collapsed' class to header -->
+        <div class="gloce-filter-header collapsed" onclick="gloceV3ToggleSection('list')">
+            <div class="gloce-filter-header-title">
+                <i class="fa-solid fa-list-ul text-emerald-600" style="color:#059669;"></i>
+                <span id="gloce_filter_list_label">ค้นหาจากรายชื่อ (List Search)</span>
+            </div>
+            <i id="gloce_filter_icon_list" class="fa-solid fa-chevron-down gloce-filter-toggle-icon"></i>
+        </div>
+
+        <!-- Add 'hidden' class to body -->
+        <div id="gloce_filter_body_list" class="gloce-filter-body hidden">
+            <!-- Buttons injected by JS -->
+            <div id="gloce_v3_filter_container"></div>
+        </div>
+    </div>
+
+    <!-- Reset Button -->
+    <div style="text-align: center; margin-bottom: 20px;">
+        <button class="gloce-reset-btn" onclick="gloceV3SetFilter('All')">
+            <i class="fa-solid fa-rotate-left"></i> <span id="gloce_reset_text">แสดงทั้งหมด</span>
+        </button>
+    </div>
+
+    <!-- 4. Content Area -->
     <div id="gloce_v3_content">
         <div class="gloce-loading">
             <i class="fa-solid fa-spinner fa-spin"></i> กำลังโหลดข้อมูล...
         </div>
     </div>
 
-    <!-- 4. Bottom Coupon Box (Black) -->
+    <!-- 5. Bottom Coupon -->
     <div class="gloce-coupon-box">
         <i class="fa-solid fa-ticket gloce-coupon-icon"></i>
         <h3 id="gloce_v3_bottom_coupon_title" class="gloce-coupon-title">มีคูปองส่วนลดใช่ไหม?</h3>
         <p id="gloce_v3_bottom_coupon_desc" class="gloce-coupon-desc">ดูวิธีการใช้งานคูปองและข้อกำหนดต่างๆ ได้ที่นี่</p>
-        <a href="#" class="gloce-coupon-btn">
+        <!-- Added ID for script targeting -->
+        <a href="#" id="gloce_coupon_btn_bottom" class="gloce-coupon-btn" target="_blank">
             <i class="fa-solid fa-book-open" style="margin-right: 8px;"></i>
             <span id="gloce_v3_bottom_coupon_btn_text">คู่มือการใช้งานคูปอง</span>
         </a>
@@ -302,189 +388,74 @@
 
 <script>
 (function() {
-    // --- Data (Updated with placeholders) ---
+    // ============================================
+    //  CONFIGURATION: กรอกลิงก์คู่มือคูปองที่นี่จุดเดียว
+    // ============================================
+    const COUPON_LINK = "https://docs.google.com/presentation/d/1A9CKhxFhhqsRudnAL1FsuEmmoPA_pKTYuh3FA55xT9k/edit?usp=sharing";
+    // ============================================
+
+    // --- Data ---
     const properties = [
-        { 
-            area: "逗子 (Zushi)", 
-            name: "GLOCE Zushi Worcation house NAGISA", 
-            address: "Zushi, Kanagawa", 
-            tags: ["Guesthouse", "Workation"], 
-            link: "https://gloce.airhost.co/en/houses/197161",
-            mapLink: "https://maps.app.goo.gl/zT9Du3dmgyyL34iD9",
-            image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2040052/picture/1713238484-17n.jpg"
-        },
-        { 
-            area: "逗子 (Zushi)", 
-            name: "民泊 ハルちゃん", 
-            address: "5 Chome-10-8 Kotsubo, Zushi, Kanagawa 249-0008", 
-            tags: ["Homestay"], 
-            link: "https://gloce.airhost.co/en/houses/197163" ,
-            mapLink: "https://maps.app.goo.gl/SSUMvUo4ysjJ2rUD9",
-            image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/1794797/picture/1620722954-1605748232-835e40ef-8f89-4b37-8450-10a5d0cce370.jpg"
-        },
-        { 
-            area: "逗子 (Zushi)", 
-            name: "逗子葉山", 
-            address: "6-chōme-5-42 Zushi, Kanagawa 249-0006", 
-            tags: ["Private House"],
-            link: "https://gloce.airhost.co/en/houses/523271" ,
-            mapLink: "https://maps.app.goo.gl/iaxiDW4pammT9Kwq6",
-            image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2044969/picture/1714610463-b3.jpg"
-        },
-        { 
-            area: "葉山 (Hayama)", 
-            name: "1816-2 Horiuchi", 
-            address: "Horiuchi, Hayama", 
-            tags: ["Ocean View"], 
-            link: "#",
-            mapLink: "#",
-            image: "#"
-        },
-        { 
-            area: "葉山 (Hayama)", 
-            name: "GLOCE 葉山のサーファーズログハウス", 
-            address: "Hayama", 
-            tags: ["Log House", "Surfing"], 
-            link: "#",
-            mapLink: "#",
-            image: "#"
-        },
-        { 
-            area: "葉山 (Hayama)", 
-            name: "GLOCE 葉山の古民家 ～囲炉裏でＢＢＱ～", 
-            address: "Hayama", 
-            tags: ["Traditional", "BBQ"], 
-            link: "#",
-            mapLink: "#",
-            image: "#"
-        },
-        { 
-            area: "葉山 (Hayama)", 
-            name: "GLOCE ゲストハウス一色 in Hayama", 
-            address: "Isshiki, Hayama", 
-            tags: ["Guesthouse"], 
-            link: "#",
-            mapLink: "#",
-            image: "#"
-        },
-        { 
-            area: "葉山 (Hayama)", 
-            name: "GLOCE Hayama near Morito Beach", 
-            address: "Morito, Hayama", 
-            tags: ["Beach"], 
-            link: "#",
-            mapLink: "#",
-            image: "#"
-        },
-        { 
-            area: "鎌倉 (Kamakura)", 
-            name: "「海行燈」一軒貸切の宿", 
-            address: "Koshigoe, Kamakura", 
-            tags: ["Private Rental"], 
-            link: "#",
-            mapLink: "#",
-            image: "#"
-        },
-        { 
-            area: "鎌倉 (Kamakura)", 
-            name: "GLOCE 鎌倉 若宮大路House", 
-            address: "Wakamiya, Kamakura", 
-            tags: ["City Center"], 
-            link: "#",
-            mapLink: "#",
-            image: "#"
-        },
-        { 
-            area: "鎌倉 (Kamakura)", 
-            name: "2 Chome-17-24 Hase", 
-            address: "Hase, Kamakura", 
-            tags: ["Near Temple"], 
-            link: "#",
-            mapLink: "#",
-            image: "#"
-        },
-        { 
-            area: "横須賀 (Yokosuka)", 
-            name: "GLOCE 横須賀 SHARE ROOM @NAVY BASE", 
-            address: "Yokosuka", 
-            tags: ["Share Room"], 
-            link: "#",
-            mapLink: "#",
-            image: "#"
-        },
-        { 
-            area: "横須賀 (Yokosuka)", 
-            name: "GLOCE ゲストルーム 2min walk to NAVY BASE", 
-            address: "Yokosuka", 
-            tags: ["Guest Room"], 
-            link: "#",
-            mapLink: "#",
-            image: "#"
-        },
-        { 
-            area: "美幌 (Bihoro)", 
-            name: "GLOCE Guestroom Bihoro", 
-            address: "Bihoro, Hokkaido", 
-            tags: ["Hokkaido"], 
-            link: "#",
-            mapLink: "#",
-            image: "#"
-        },
-        { 
-            area: "美幌 (Bihoro)", 
-            name: "GLOCE Bihoro ゲストハウス 丘宿", 
-            address: "Bihoro, Hokkaido", 
-            tags: ["Guesthouse"], 
-            link: "#",
-            mapLink: "#",
-            image: "#"
-        },
-        { 
-            area: "宮古島 (Miyakojima)", 
-            name: "石田ヴィレッジ", 
-            address: "Miyakojima, Okinawa", 
-            tags: ["Village", "Resort"], 
-            link: "#",
-            mapLink: "#",
-            image: "#"
-        },
-        { 
-            area: "伊豆 (Izu)", 
-            name: "GLOCE一碧ハウス", 
-            address: "Ippeki, Izu", 
-            tags: ["Nature"], 
-            link: "#",
-            mapLink: "#",
-            image: "#"
-        },
-        { 
-            area: "沖縄 (Okinawa)", 
-            name: "ユイマール恩納1", 
-            address: "Onna, Okinawa", 
-            tags: ["Resort"], 
-            link: "#",
-            mapLink: "#",
-            image: "#"
-        },
-        { 
-            area: "千葉 (Chiba)", 
-            name: "GLOCE RIN", 
-            address: "Chiba", 
-            tags: ["Modern"], 
-            link: "#",
-            mapLink: "#",
-            image: "#"
-        },
-        { 
-            area: "広島 (Hiroshima)", 
-            name: "761-3 Akitsucho Kazahaya", 
-            address: "Akitsucho, Hiroshima", 
-            tags: ["Sea Side"], 
-            link: "#",
-            mapLink: "#",
-            image: "#"
-        }
+        { area: "逗子 (Zushi)", name: "GLOCE Zushi Worcation house NAGISA", address: "Zushi, Kanagawa", tags: ["Guesthouse", "Worcation"], link: "https://gloce.airhost.co/en/houses/197161", mapLink: "https://maps.app.goo.gl/zT9Du3dmgyyL34iD9", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2040052/picture/1713238484-17n.jpg" },
+        { area: "逗子 (Zushi)", name: "Haruchan, Guesthouse of Bagel shop", address: "5 Chome-10-8 Kotsubo, Zushi, Kanagawa 249-0008", tags: ["Homestay"], link: "https://gloce.airhost.co/en/houses/197163" , mapLink: "https://maps.app.goo.gl/SSUMvUo4ysjJ2rUD9", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/1794797/picture/1620722954-1605748232-835e40ef-8f89-4b37-8450-10a5d0cce370.jpg" },
+        { area: "逗子 (Zushi)", name: "GLOCE Zushi Hayama House", address: "6-chōme-5-42 Zushi, Kanagawa 249-0006", tags: ["Private House"], link: "https://gloce.airhost.co/en/houses/523271" , mapLink: "https://maps.app.goo.gl/iaxiDW4pammT9Kwq6", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2044969/picture/1714610463-b3.jpg" },
+        { area: "葉山 (Hayama)", name: "GLOCE Hayama Surfers Log House", address: "2171-2 Horiuchi, Hayama, Miura District, Kanagawa 249-0112", tags: ["Log House", "Surfing"], link: "https://gloce.airhost.co/en/houses/197165", mapLink: "https://maps.app.goo.gl/8wR3Xwvibo8sUz4j7", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2040341/picture/1713245360-21n.jpg" },
+        { area: "葉山 (Hayama)", name: "GLOCE Hayama Old folk House", address: "2171-2 Horiuchi, Hayama, Miura District, Kanagawa 249-0112", tags: ["Traditional", "BBQ"], link: "https://gloce.airhost.co/en/houses/197166", mapLink: "https://maps.app.goo.gl/gpA8aBiS7iyGSHg87", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2023413/picture/1707112053-16n.jpg" },
+        { area: "葉山 (Hayama)", name: "GLOCE Hayama Guesthouse", address: "1432-2 Isshiki, Hayama, Miura District, Kanagawa 240-0111", tags: ["Guesthouse"], link: "https://gloce.airhost.co/en/houses/197167", mapLink: "https://maps.app.goo.gl/KGhwfRLmnWj4RjpY7", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2023475/picture/1707115503-18n.jpg" },
+        { area: "葉山 (Hayama)", name: "GLOCE Hayama near Morito Beach", address: "1911-1 Horiuchi, Hayama, Miura District, Kanagawa 249-0112", tags: ["Beach"], link: "https://gloce.airhost.co/en/houses/445090", mapLink: "https://maps.app.goo.gl/SyA4YWBL3X6xvbZJ7", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2034264/picture/1711096344-20230613_DSC5807.jpg" },
+        { area: "葉山 (Hayama)", name: "GLOCE Hayama Ocean View House", address: "4290 Akiya, Yokosuka, Kanagawa 240-0105", tags: ["Beach"], link: "https://gloce.airhost.co/en/houses/216037", mapLink: "https://maps.app.goo.gl/YXAM6nMx7HCu3HTc9", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2034106/picture/1711090630-26-2.jpg" },
+        { area: "鎌倉 (Kamakura)", name: "GLOCE Kamakura Koshigoe Umiandon house", address: "Koshigoe, Kamakura", tags: ["Private Rental"], link: "https://gloce.airhost.co/en/houses/307414", mapLink: "https://maps.app.goo.gl/nNQp5PZx9W5B1GwQ8", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2019821/picture/1706058359-download.jpg" },
+        { area: "鎌倉 (Kamakura)", name: "GLOCE 鎌倉 若宮大路House", address: "Wakamiya, Kamakura", tags: ["City Center"], link: "https://gloce.airhost.co/en/houses/307415", mapLink: "https://maps.app.goo.gl/vjTfn1jWZcCnrBqy8", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2019844/picture/1706059296-L1-1.jpg" },
+        { area: "鎌倉 (Kamakura)", name: "GLOCE Hase QRP House KAMAKURA", address: "Hase, Kamakura", tags: ["Near Temple"], link: "https://gloce.airhost.co/ja/houses/307415", mapLink: "https://maps.app.goo.gl/HtTuUvw1z6cfdjpA8", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2034514/picture/1711359005-20240321_DSC3161_1.jpg" },
+        { area: "横須賀 (Yokosuka)", name: "GLOCE Yokosuka ShareroomA@NAVY BASE", address: "Yokosuka", tags: ["Share Room"], link: "https://gloce.airhost.co/en/houses/198052", mapLink: "https://maps.app.goo.gl/jvEPFodTYEKQyGyB7", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2034248/picture/1711096291-07n.jpg" },
+        { area: "横須賀 (Yokosuka)", name: "GLOCE Yokosuka Guestroom Near NAVY BASE", address: "Yokosuka", tags: ["Guest Room"], link: "https://gloce.airhost.co/en/houses/197168", mapLink: "https://maps.app.goo.gl/xjcvK9JwM1PNYbWc6", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2038856/picture/1712904548-01n.jpg" },
+        { area: "横須賀 (Yokosuka)", name: "Hotel S", address: "Yokosuka", tags: ["Guest Room"], link: "https://gloce.airhost.co/en/houses/556333", mapLink: "https://maps.app.goo.gl/xjcvK9JwM1PNYbWc6", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2084468/picture/1728126799-B1.jpg" },
+        { area: "横須賀 (Yokosuka)", name: "Kannonzaki Beach Villa", address: "Yokosuka", tags: ["Beach", "Guesthouse"], link: "https://gloce.airhost.co/en/houses/608144", mapLink: "https://maps.app.goo.gl/euQ1P2Bu7wgmd9kT9", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2176652/picture/1748496627-668855871.jpg" },
+        { area: "美幌 (Bihoro)", name: "GLOCE Guestroom Bihoro No.311", address: "Bihoro, Hokkaido", tags: ["Hokkaido"], link: "https://gloce.airhost.co/en/houses/197171", mapLink: "https://maps.app.goo.gl/qdugFGGgXv9du1m69", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2039885/picture/1713233374-cover_Picn.jpg" },
+        { area: "美幌 (Bihoro)", name: "GLOCE Guestroom Bihoro No.313", address: "Bihoro, Hokkaido", tags: ["Hokkaido"], link: "https://gloce.airhost.co/en/houses/197172", mapLink: "https://maps.app.goo.gl/qdugFGGgXv9du1m69", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2039923/picture/1713234308-cover_Picn.jpg" },
+        { area: "美幌 (Bihoro)", name: "GLOCE Guestroom Bihoro No.315", address: "Bihoro, Hokkaido", tags: ["Hokkaido"], link: "https://gloce.airhost.co/ja/houses/197173", mapLink: "https://maps.app.goo.gl/qdugFGGgXv9du1m69", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2039230/picture/1712998594-cover_Picn.jpg" },
+        { area: "美幌 (Bihoro)", name: "GLOCE Bihoro Guest House Okayado", address: "Bihoro, Hokkaido", tags: ["Guesthouse"], link: "https://gloce.airhost.co/en/houses/342493", mapLink: "https://maps.app.goo.gl/s9j62ue6oMWQQTg38", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2038975/picture/1712975098-7.jpg" },
+        { area: "美幌 (Bihoro)", name: "TOMA HOUSE", address: "Bihoro, Hokkaido", tags: ["Guesthouse"], link: "https://gloce.airhost.co/en/houses/773155", mapLink: "https://maps.app.goo.gl/Y62eb1xrmGbeUJ5o9", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2476438/picture/1765086251-1__________2.jpg" },
+        { area: "宮ヶ瀬 (Miyagase)", name: "GLOCE Miyagase MOBILITY GUEST HOUSE", address: "Miyagase", tags: ["Guesthouse"], link: "https://gloce.airhost.co/en/houses/198646", mapLink: "https://maps.app.goo.gl/vbEqnoxx2qjBzdha7", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2158916/picture/1746349968-29n.jpg" },
+        { area: "宮ヶ瀬 (Miyagase)", name: "GLOCE Hanbara River Side House", address: "Miyagase", tags: ["Guesthouse"], link: "https://gloce.airhost.co/en/houses/515275", mapLink: "https://maps.app.goo.gl/HwpZX1YgKfuQEbpD6", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2031281/picture/1709890875-1.jpg" },
+        { area: "宮古島 (Miyakojima)", name: "GLOCE Miyakojima Ishida Village ", address: "Miyakojima, Okinawa", tags: ["Village", "Resort"], link: "https://gloce.airhost.co/en/houses/228478", mapLink: "https://maps.app.goo.gl/Y8KyP54pVVRsXQiz5", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/1831975/picture/1635047036-142.jpg" },
+        { area: "宮古島 (Miyakojima)", name: "LAPSI", address: "Miyakojima, Okinawa", tags: ["Village", "Shareroom"], link: "https://gloce.airhost.co/en/houses/245044", mapLink: "https://maps.app.goo.gl/TNbpGjBy2H3ZoYQ79", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2040349/picture/1713247820-2_n.jpg" },
+        { area: "岐阜 (Gifu)", name: "GLOCE Yoro Nishi-Okura House 1", address: "Yoro, Gifu", tags: ["Guestroom"], link: "https://gloce.airhost.co/en/houses/359670", mapLink: "https://maps.app.goo.gl/nrBbXi8CP8NPnEDq9", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2019860/picture/1706060182-1-2.jpg" },
+        { area: "岐阜 (Gifu)", name: "Mohei Guest House", address: "Yoro, Gifu", tags: ["Guestroom"], link: "https://gloce.airhost.co/en/houses/585340", mapLink: "https://maps.app.goo.gl/KpQ9wsBChsWkFhnx7", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2114701/picture/1736469680-1.jpg" },
+        { area: "伊豆 (Izu)", name: "GLOCE一碧ハウス", address: "Ippeki, Izu", tags: ["Nature"], link: "https://gloce.airhost.co/en/houses/329854", mapLink: "https://maps.app.goo.gl/fUSgykPSPZ1UjRBZ7", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2040399/picture/1713250653-1.jpg" },
+        { area: "大分 (Oita)", name: "GLOCE Yabakeicho Nabeya", address: "2124-1 Yabakeimachi Oaza Oshima, Nakatsu, Oita 871-0431", tags: ["Nature","Guesthouse","BBQ"], link: "https://gloce.airhost.co/en/houses/382536", mapLink: "https://maps.app.goo.gl/hu4L9T417BdmaLBk9", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/1936055/picture/1678153513-2000-1406_19.jpg" },
+        { area: "大分 (Oita)", name: "GLOCE Usa Dengu", address: "172-1 Ajimumachi Tanokuchi, Usa, Oita 872-0526", tags: ["Nature","Guesthouse"], link: "https://gloce.airhost.co/en/houses/391993", mapLink: "https://maps.app.goo.gl/934ijVJ6E1TikvTf9", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2019432/picture/1705891926-6-1.jpg" },
+        { area: "大分 (Oita)", name: "RENAClDO", address: "172-1 Ajimumachi Tanokuchi, Usa, Oita 872-0526", tags: ["Nature","Guesthouse"], link: "https://gloce.airhost.co/en/houses/518069", mapLink: "https://maps.app.goo.gl/JTDzGbDMsJVLs3Ve7", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2057940/picture/1718674759-1.jpg" },
+        { area: "会津 (Aizu)", name: "GLOCE Nishiaizu Fukunoya", address: "Haramachi Otsu-2213 Nozawa, Nishiaizu, Yama District, Fukushima 969-4406", tags: ["Nature","Guesthouse"], link: "https://gloce.airhost.co/en/houses/495768", mapLink: "https://maps.app.goo.gl/upzq4QUbGsvsfFuA8", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2006579/picture/1700570358-A0-1.jpg" },
+        { area: "沖縄 (Okinawa)", name: "Garden Resort Okinawa", address: "Onna, Okinawa", tags: ["Resort"], link: "https://gloce.airhost.co/en/houses/515273", mapLink: "https://maps.app.goo.gl/MyYoKJW92wpU4G627", image: "https://d3fueozinnp6qd.cloudfront.net/eyJidWNrZXQiOiJ0cmlvc2t5LWFpcmhvc3QiLCJrZXkiOiJ1cGxvYWRzL3Byb2R1Y3Rpb24vaG91c2VfcGljdHVyZS8yMDMxOTI5L3BpY3R1cmUvMTcxMDI5OTc4Ny1fX19fXy5qcGciLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjgwMCwiZml0IjoiY29udGFpbiJ9LCJyb3RhdGUiOm51bGx9fQ==" },
+        { area: "古河 (Furukawa)", name: "Kominka Sui", address: "826-2 Onna, Koga, Ibaraki 306-0104", tags: ["Nature","Guesthouse"], link: "https://gloce.airhost.co/en/houses/494702", mapLink: "https://maps.app.goo.gl/F7qoMcSoqjv9fu9bA", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2002803/picture/1698752747-1-0--.jpg" },
+        { area: "賢島 (Kashikojima)", name: "Villa ISE shima", address: "878-24 Agocho Shinmei, Shima, Mie 517-0502", tags: ["Nature","Guesthouse"], link: "https://gloce.airhost.co/en/houses/523613", mapLink: "https://maps.app.goo.gl/HafyrRgRuJrDoGqm9", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2043757/picture/1714196831-7.jpg" },
+        { area: "佐渡 (Sado)", name: "GLOCE Sado Base Camp Matsugasaki", address: "Ota, Sado, Niigata 952-0822", tags: ["Village", "Shareroom"], link: "https://gloce.airhost.co/en/houses/512689", mapLink: "https://maps.app.goo.gl/stZQtXiWsP7RQaRa7", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2154963/picture/1745650013-h1.jpg" },
+        { area: "佐渡 (Sado)", name: "GLOCE Sado Base Camp Shukunegi", address: "372 Shukunegi, Sado, Niigata 952-0612", tags: ["Shareroom"], link: "https://gloce.airhost.co/en/houses/512690", mapLink: "https://maps.app.goo.gl/fdK83NfhKdTPNCSU8", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2028071/picture/1708581465-IMG_1524.jpeg" },
+        { area: "佐渡 (Sado)", name: "Tokinoho House", address: "1943-2 Niibonagaune, Sado, Niigata 952-0101", tags: ["Guesthouse"], link: "https://gloce.airhost.co/en/houses/638800", mapLink: "https://maps.app.goo.gl/ALfnwj31xjxvTNbJ6", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2153859/picture/1745402535-b1.jpg" },
+        { area: "新潟 (Niigata)", name: "Villa Dottaru", address: "Yuzawa, Niigata", tags: ["Guesthouse"], link: "https://gloce.airhost.co/en/houses/655869", mapLink: "https://maps.app.goo.gl/8YuZgmvajs4WwCTo7", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2165645/picture/1747795788-l6_b.jpg" },
+        { area: "南伊豆 (Minamiizu)", name: "GLOCE Minamiizu Outdoor Base Camp (Dormitory)", address: "604-2 Shimogamo, Minamiizu, Kamo District, Shizuoka 415-0303", tags: ["Dormitory"], link: "https://gloce.airhost.co/en/houses/512687", mapLink: "https://maps.app.goo.gl/KKtV8T4K7pKzEZTq9", image: "https://d3fueozinnp6qd.cloudfront.net/eyJidWNrZXQiOiJ0cmlvc2t5LWFpcmhvc3QiLCJrZXkiOiJ1cGxvYWRzL3Byb2R1Y3Rpb24vaG91c2VfcGljdHVyZS8yMDU4ODkyL3BpY3R1cmUvMTcxOTExMTc3NC0zM0E5OTFGNi03RTgzLTQ1NzctODk3Ni0yRDAzRTBBRDBDQzMuanBlZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6ODAwLCJmaXQiOiJjb250YWluIn0sInJvdGF0ZSI6bnVsbH19" },
+        { area: "南伊豆 (Minamiizu)", name: "GLOCE Minamiizu Outdoor Base Camp (Guesthouse)", address: "604-2 Shimogamo, Minamiizu, Kamo District, Shizuoka 415-0303", tags: ["Guesthouse"], link: "https://gloce.airhost.co/en/houses/512687", mapLink: "https://maps.app.goo.gl/WgCa614VwsHqg5q46", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2087656/picture/1729332134-l4.jpg" },
+        { area: "南伊豆 (Minamiizu)", name: "GLOCE Minamiizu Shimokamo Onsen Guesthouse", address: "45-2 Shimogamo, Minamiizu, Kamo District, Shizuoka 415-0303", tags: ["Guesthouse"], link: "https://gloce.airhost.co/en/houses/512688", mapLink: "https://maps.app.goo.gl/qsEiS9PUeaJqBWG9A", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2086595/picture/1729075940-l2.jpg" },
+        { area: "南伊豆 (Minamiizu)", name: "GLOCE Yumigahama GUEST ROOM", address: "781 Minato, Minamiizu, Kamo District, Shizuoka 415-0152", tags: ["Guesthouse"], link: "https://gloce.airhost.co/en/houses/512692", mapLink: "https://maps.app.goo.gl/eMTD2jikU8FMopqh7", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2230133/picture/1751684172-4.jpg" },
+        { area: "南伊豆 (Minamiizu)", name: "Minamiizu Garden Villa", address: "540 Ichijō, Minamiizu, Kamo District, Shizuoka 415-0301", tags: ["Guesthouse"], link: "https://gloce.airhost.co/en/houses/698520", mapLink: "https://maps.app.goo.gl/e9TVfjvnDebwUPCD6", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2256298/picture/1752908281-o1__1_.jpg" },
+        { area: "千葉 (Chiba)", name: "GLOCE RIN", address: "278 Emiaoki, Kamogawa, Chiba 299-2842, Japan", tags: ["Modern","Villa"], link: "https://gloce.airhost.co/en/houses/704604", mapLink: "https://maps.app.goo.gl/FqpT6G6SE7GDQtZM7", image: "https://d3fueozinnp6qd.cloudfront.net/eyJidWNrZXQiOiJ0cmlvc2t5LWFpcmhvc3QiLCJrZXkiOiJ1cGxvYWRzL3Byb2R1Y3Rpb24vaG91c2VfcGljdHVyZS8yMjcyMzM3L3BpY3R1cmUvMTc1Mzk4NzEwNC0yLUlNR182MDI5LmpwZyIsImVkaXRzIjp7InJlc2l6ZSI6eyJ3aWR0aCI6ODAwLCJmaXQiOiJjb250YWluIn0sInJvdGF0ZSI6bnVsbH19" },
+        { area: "広島 (Hiroshima)", name: "Rental Cottage Y51 by the sea", address: "761-3 Akitsucho Kazahaya, Higashihiroshima, Hiroshima 739-2403", tags: ["Sea Side"], link: "https://gloce.airhost.co/en/houses/749760", mapLink: "https://maps.app.goo.gl/SvQrqypPBx48A7rg6", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2361806/picture/1758366868-1.jpg" },
+        { area: "広島 (Hiroshima)", name: "DIARY OHSHIBAJIMA", address: "2612-8 Akitsuchō Kazahaya, Higashihiroshima, Hiroshima 739-2403", tags: ["Sea Side"], link: "https://gloce.airhost.co/en/houses/749761", mapLink: "https://maps.app.goo.gl/HUcUjwVJGt7S9wuf8", image: "https://s3-ap-northeast-1.amazonaws.com/triosky-airhost/uploads/production/house_picture/2361885/picture/1758367983-d39.jpg" }
     ];
+
+    // --- Mappings ---
+    const cityToRegion = {
+        "Hokkaido": ["美幌 (Bihoro)"],
+        "Tohoku": ["会津 (Aizu)"],
+        "Kanto": ["逗子 (Zushi)", "葉山 (Hayama)", "鎌倉 (Kamakura)", "横須賀 (Yokosuka)", "宮ヶ瀬 (Miyagase)", "千葉 (Chiba)", "古河 (Furukawa)"],
+        "Chubu": ["岐阜 (Gifu)", "伊豆 (Izu)", "南伊豆 (Minamiizu)", "佐渡 (Sado)", "新潟 (Niigata)"],
+        "Kansai": ["賢島 (Kashikojima)"],
+        "Chugoku": ["広島 (Hiroshima)"],
+        "Shikoku": [], // Placeholder
+        "Kyushu": ["大分 (Oita)"],
+        "Okinawa": ["沖縄 (Okinawa)", "宮古島 (Miyakojima)"]
+    };
 
     // --- Translations ---
     const translations = {
@@ -494,12 +465,33 @@
             footerCouponDesc: "ดูวิธีการใช้งานคูปองและข้อกำหนดต่างๆ ได้ที่นี่",
             footerBtnText: "คู่มือการใช้งานคูปอง",
             viewDetails: "ดูรายละเอียด",
+            all: "ทั้งหมด",
+            mapInstruction: "เลือกภูมิภาคจากแผนที่",
+            reset: "แสดงทั้งหมด",
+            filterMapLabel: "ค้นหาจากแผนที่ (Map Search)",
+            filterListLabel: "ค้นหาจากรายชื่อ (List Search)",
             areaMapping: {
                 "逗子 (Zushi)": "ซูชิ (Zushi)", "葉山 (Hayama)": "ฮายามะ (Hayama)",
                 "鎌倉 (Kamakura)": "คามาคุระ (Kamakura)", "横須賀 (Yokosuka)": "โยโกสุกะ (Yokosuka)",
                 "美幌 (Bihoro)": "บิโฮโร (Bihoro)", "宮古島 (Miyakojima)": "มิยาโกจิมะ (Miyakojima)",
+                "宮ヶ瀬 (Miyagase)": "มิยากาเสะ (Miyagase)", "岐阜 (Gifu)": "กิฟุ (Gifu)",
                 "伊豆 (Izu)": "อิซุ (Izu)", "沖縄 (Okinawa)": "โอกินาว่า (Okinawa)",
-                "千葉 (Chiba)": "ชิบะ (Chiba)", "広島 (Hiroshima)": "ฮิโรชิม่า (Hiroshima)"
+                "千葉 (Chiba)": "ชิบะ (Chiba)", "広島 (Hiroshima)": "ฮิโรชิม่า (Hiroshima)",
+                "大分 (Oita)": "โออิตะ (Oita)", "会津 (Aizu)": "ไอซุ (Aizu)",
+                "古河 (Furukawa)": "ฟุรุคาวะ (Furukawa)", "賢島 (Kashikojima)": "คาชิโกจิมะ (Kashikojima)",
+                "佐渡 (Sado)": "ซาโดะ (Sado)", "新潟 (Niigata)": "นีงาตะ (Niigata)",
+                "南伊豆 (Minamiizu)": "มินามิอิซุ (Minamiizu)"
+            },
+            tagMapping: {
+                "Guesthouse": "เกสต์เฮาส์", "Worcation": "เวิร์คเคชั่น", "Workation": "เวิร์คเคชั่น",
+                "Homestay": "โฮมสเตย์", "Private House": "บ้านเหมาหลัง", "Log House": "บ้านไม้ซุง",
+                "Surfing": "เซิร์ฟ", "Traditional": "บ้านสไตล์ญี่ปุ่น", "BBQ": "บาร์บีคิว",
+                "Beach": "ติดชายหาด", "Private Rental": "เช่าเหมาหลัง", "City Center": "ใจกลางเมือง",
+                "Near Temple": "ใกล้วัด", "Share Room": "ห้องพักรวม", "Shareroom": "ห้องพักรวม",
+                "Guest Room": "ห้องพักส่วนตัว", "Guestroom": "ห้องพักส่วนตัว", "Hokkaido": "ฮอกไกโด",
+                "Village": "หมู่บ้าน", "Resort": "รีสอร์ท", "Nature": "ธรรมชาติ",
+                "Modern": "โมเดิร์น", "Sea Side": "ริมทะเล", "Dormitory": "ห้องนอนรวม",
+                "Villa": "วิลล่า", "Ocean View": "วิวทะเล"
             }
         },
         en: {
@@ -508,13 +500,24 @@
             footerCouponDesc: "Check out how to use your coupon and terms here.",
             footerBtnText: "Coupon User Guide",
             viewDetails: "View Details",
+            all: "All",
+            mapInstruction: "Select Region from Map",
+            reset: "Show All",
+            filterMapLabel: "Map Search",
+            filterListLabel: "List Search",
             areaMapping: {
                 "逗子 (Zushi)": "Zushi", "葉山 (Hayama)": "Hayama",
                 "鎌倉 (Kamakura)": "Kamakura", "横須賀 (Yokosuka)": "Yokosuka",
                 "美幌 (Bihoro)": "Bihoro", "宮古島 (Miyakojima)": "Miyakojima",
+                "宮ヶ瀬 (Miyagase)": "Miyagase", "岐阜 (Gifu)": "Gifu",
                 "伊豆 (Izu)": "Izu", "沖縄 (Okinawa)": "Okinawa",
-                "千葉 (Chiba)": "Chiba", "広島 (Hiroshima)": "Hiroshima"
-            }
+                "千葉 (Chiba)": "Chiba", "広島 (Hiroshima)": "Hiroshima",
+                "大分 (Oita)": "Oita", "会津 (Aizu)": "Aizu",
+                "古河 (Furukawa)": "Furukawa", "賢島 (Kashikojima)": "Kashikojima",
+                "佐渡 (Sado)": "Sado", "新潟 (Niigata)": "Niigata",
+                "南伊豆 (Minamiizu)": "Minamiizu"
+            },
+            tagMapping: { "Worcation": "Workation", "Shareroom": "Share Room", "Guestroom": "Guest Room" }
         },
         jp: {
             headerTitle: "宿泊施設一覧",
@@ -522,37 +525,112 @@
             footerCouponDesc: "クーポンの利用方法や条件はこちらでご確認ください。",
             footerBtnText: "クーポン利用ガイド",
             viewDetails: "詳細を見る",
-            areaMapping: {}
+            all: "すべて",
+            mapInstruction: "地図から地域を選択",
+            reset: "すべて表示",
+            filterMapLabel: "地図から探す",
+            filterListLabel: "一覧から探す",
+            areaMapping: {},
+            tagMapping: {
+                "Guesthouse": "ゲストハウス", "Worcation": "ワーケーション", "Workation": "ワーケーション",
+                "Homestay": "ホームステイ", "Private House": "一軒家", "Log House": "ログハウス",
+                "Surfing": "サーフィン", "Traditional": "古民家", "BBQ": "BBQ",
+                "Beach": "ビーチ", "Private Rental": "貸切", "City Center": "市街地",
+                "Near Temple": "お寺近く", "Share Room": "シェアルーム", "Shareroom": "シェアルーム",
+                "Guest Room": "ゲストルーム", "Guestroom": "ゲストルーム", "Hokkaido": "北海道",
+                "Village": "ヴィレッジ", "Resort": "リゾート", "Nature": "自然",
+                "Modern": "モダン", "Sea Side": "海沿い", "Dormitory": "ドミトリー",
+                "Villa": "ヴィラ", "Ocean View": "オーシャンビュー"
+            }
         }
     };
 
     let currentLang = 'th';
+    let currentFilterType = 'All';
+    let currentFilterValue = '';
+    
+    // Toggle State
+    const filterState = {
+        map: false, // Default closed
+        list: false 
+    };
 
-    // --- Functions ---
+    // --- Core Functions ---
     window.gloceV3SetLang = function(lang) {
         currentLang = lang;
+        updateUI();
+        render();
+    };
+
+    window.gloceV3ToggleSection = function(section) {
+        filterState[section] = !filterState[section];
+        const body = document.getElementById(`gloce_filter_body_${section}`);
+        const icon = document.getElementById(`gloce_filter_icon_${section}`);
+        const header = icon.parentElement;
         
-        // Buttons
+        if (filterState[section]) {
+            // Open
+            body.classList.remove('hidden');
+            header.classList.remove('collapsed');
+        } else {
+            // Close
+            body.classList.add('hidden');
+            header.classList.add('collapsed');
+        }
+    };
+
+    window.gloceV3SetFilter = function(type, value) {
+        currentFilterType = type;
+        currentFilterValue = value;
+        
+        // Map Active State
+        document.querySelectorAll('.map-region').forEach(el => el.classList.remove('active'));
+        if(type === 'Region') {
+            const mapEl = document.getElementById('map_' + value);
+            if(mapEl) mapEl.classList.add('active');
+        }
+        
+        renderFilterButtons();
+        render();
+
+        // SCROLL LOGIC
+        if (type !== 'All') {
+            const contentArea = document.getElementById('gloce_v3_content');
+            if(contentArea) {
+                contentArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    }
+
+    function updateUI() {
         ['th','en','jp'].forEach(l => {
             const btn = document.getElementById(`gloce_v3_btn_${l}`);
-            if(btn) btn.classList.toggle('active', l === lang);
+            if(btn) btn.classList.toggle('active', l === currentLang);
         });
 
-        // Static Texts
-        const t = translations[lang];
+        const t = translations[currentLang];
         setText('gloce_v3_header_title', t.headerTitle);
-        
-        // Update both Top and Bottom Coupon Boxes
         setText('gloce_v3_top_coupon_title', t.footerCouponTitle);
         setText('gloce_v3_top_coupon_desc', t.footerCouponDesc);
         setText('gloce_v3_top_coupon_btn_text', t.footerBtnText);
-
         setText('gloce_v3_bottom_coupon_title', t.footerCouponTitle);
         setText('gloce_v3_bottom_coupon_desc', t.footerCouponDesc);
         setText('gloce_v3_bottom_coupon_btn_text', t.footerBtnText);
+        setText('gloce_map_instruction', t.mapInstruction);
+        setText('gloce_reset_text', t.reset);
         
-        render();
-    };
+        // New labels
+        setText('gloce_filter_map_label', t.filterMapLabel);
+        setText('gloce_filter_list_label', t.filterListLabel);
+        
+        // Update Coupon Links
+        const topBtn = document.getElementById('gloce_coupon_btn_top');
+        const bottomBtn = document.getElementById('gloce_coupon_btn_bottom');
+        if(topBtn) topBtn.href = COUPON_LINK;
+        if(bottomBtn) bottomBtn.href = COUPON_LINK;
+        
+        renderFilterButtons();
+    }
 
     function setText(id, txt) {
         const el = document.getElementById(id);
@@ -577,6 +655,47 @@
         return '#' + '00000'.substring(0, 6 - c.length) + c;
     }
 
+    // --- Render Logic ---
+    function renderFilterButtons() {
+        const container = document.getElementById('gloce_v3_filter_container');
+        if(!container) return;
+        container.innerHTML = '';
+
+        const t = translations[currentLang];
+
+        for (const [region, cities] of Object.entries(cityToRegion)) {
+            const validCities = cities.filter(city => properties.some(p => p.area === city));
+            if(validCities.length === 0) continue;
+
+            const group = document.createElement('div');
+            group.className = 'gloce-region-group';
+            
+            const label = document.createElement('span');
+            label.className = 'gloce-region-label';
+            label.textContent = region;
+            group.appendChild(label);
+
+            const btnContainer = document.createElement('div');
+            btnContainer.className = 'gloce-filter-buttons';
+
+            validCities.forEach(city => {
+                const btn = document.createElement('button');
+                btn.className = `gloce-filter-btn ${currentFilterType === 'City' && currentFilterValue === city ? 'active' : ''}`;
+                
+                let displayName = city;
+                if (currentLang !== 'jp' && t.areaMapping[city]) {
+                    displayName = t.areaMapping[city];
+                }
+                btn.textContent = displayName;
+                btn.onclick = () => gloceV3SetFilter('City', city);
+                btnContainer.appendChild(btn);
+            });
+
+            group.appendChild(btnContainer);
+            container.appendChild(group);
+        }
+    }
+
     function render() {
         const container = document.getElementById('gloce_v3_content');
         if(!container) return;
@@ -584,7 +703,20 @@
         container.innerHTML = '';
         const t = translations[currentLang];
 
-        const grouped = properties.reduce((acc, item) => {
+        let filteredProps = properties;
+        if (currentFilterType === 'City') {
+            filteredProps = properties.filter(p => p.area === currentFilterValue);
+        } else if (currentFilterType === 'Region') {
+            const citiesInRegion = cityToRegion[currentFilterValue] || [];
+            filteredProps = properties.filter(p => citiesInRegion.includes(p.area));
+        }
+
+        if(filteredProps.length === 0) {
+            container.innerHTML = `<div style="text-align:center; padding:40px; color:#6b7280;">ไม่พบที่พักในโซนนี้ (No properties found)</div>`;
+            return;
+        }
+
+        const grouped = filteredProps.reduce((acc, item) => {
             if (!acc[item.area]) acc[item.area] = [];
             acc[item.area].push(item);
             return acc;
@@ -609,7 +741,6 @@
                 const card = document.createElement('div');
                 card.className = 'gloce-card';
 
-                // Image Logic
                 let imageHtml;
                 if(item.image && item.image !== "#") {
                     imageHtml = `<img src="${item.image}" alt="${item.name}" class="gloce-card-img">`;
@@ -618,7 +749,6 @@
                     imageHtml = `<div class="gloce-card-placeholder" style="background-color: ${color}"><i class="fa-solid fa-hotel opacity-50"></i></div>`;
                 }
 
-                // Address & Link Logic
                 let addressHtml = `<span><i class="fa-solid fa-location-dot" style="color:#059669; margin-right:5px;"></i> ${item.address}</span>`;
                 if (item.mapLink && item.mapLink !== "#") {
                     addressHtml = `<a href="${item.mapLink}" target="_blank" title="Google Maps">${addressHtml}</a>`;
@@ -626,8 +756,11 @@
 
                 const finalLink = localizeUrl(item.link, currentLang);
                 
-                // Tags
-                const tagsHtml = item.tags.map(tag => `<span class="gloce-tag">${tag}</span>`).join('');
+                const tagsHtml = item.tags.map(tag => {
+                    let displayTag = tag;
+                    if(t.tagMapping && t.tagMapping[tag]) displayTag = t.tagMapping[tag];
+                    return `<span class="gloce-tag">${displayTag}</span>`;
+                }).join('');
 
                 card.innerHTML = `
                     ${imageHtml}
@@ -650,10 +783,14 @@
         }
     }
 
-    // Init with retry
+    // Init
     function init() {
         if(document.getElementById('gloce_v3_content')) {
             gloceV3SetLang('th');
+            // Initial state: Map open, List closed? Or both closed?
+            // Let's set both CLOSED initially for cleaner look, or open Map.
+            // Currently set to false in filterState object above.
+            gloceV3ToggleSection('map'); // Open Map by default
         } else {
             setTimeout(init, 500);
         }
