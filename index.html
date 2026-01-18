@@ -1,7 +1,3 @@
-<!-- ========================================== -->
-<!-- Version 3.11: List Search Default Collapsed -->
-<!-- ========================================== -->
-
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -55,10 +51,10 @@
         background: transparent;
         border: 1px solid transparent;
         color: rgba(255,255,255,0.8);
-        padding: 5px 12px;
+        padding: 5px 10px; /* Reduced padding slightly to fit 5 buttons */
         cursor: pointer;
         border-radius: 4px;
-        font-size: 0.9rem;
+        font-size: 0.85rem;
         transition: all 0.2s;
     }
     .gloce-lang-btn.active {
@@ -253,7 +249,6 @@
 
 <div id="gloce_v3_root">
 
-    <!-- 1. Header -->
     <div class="gloce-header">
         <div class="gloce-header-title">
             <i class="fa-solid fa-house-chimney"></i>
@@ -263,22 +258,21 @@
             <button onclick="gloceV3SetLang('th')" id="gloce_v3_btn_th" class="gloce-lang-btn active">TH</button>
             <button onclick="gloceV3SetLang('en')" id="gloce_v3_btn_en" class="gloce-lang-btn">EN</button>
             <button onclick="gloceV3SetLang('jp')" id="gloce_v3_btn_jp" class="gloce-lang-btn">JP</button>
+            <button onclick="gloceV3SetLang('cn')" id="gloce_v3_btn_cn" class="gloce-lang-btn">CN</button>
+            <button onclick="gloceV3SetLang('kr')" id="gloce_v3_btn_kr" class="gloce-lang-btn">KR</button>
         </div>
     </div>
 
-    <!-- 2. Top Coupon Box -->
     <div class="gloce-coupon-box">
         <i class="fa-solid fa-ticket gloce-coupon-icon"></i>
         <h3 id="gloce_v3_top_coupon_title" class="gloce-coupon-title">หากคุณมีคูปองส่วนลดคลิกที่ตรงนี้</h3>
         <p id="gloce_v3_top_coupon_desc" class="gloce-coupon-desc">ดูวิธีการใช้งานคูปองและข้อกำหนดต่างๆ ได้ที่นี่</p>
-        <!-- Added ID for script targeting -->
         <a href="#" id="gloce_coupon_btn_top" class="gloce-coupon-btn" target="_blank">
             <i class="fa-solid fa-book-open" style="margin-right: 8px;"></i>
             <span id="gloce_v3_top_coupon_btn_text">คู่มือการใช้งานคูปอง</span>
         </a>
     </div>
 
-    <!-- 3.1. Collapsible Filter: MAP -->
     <div class="gloce-filter-section">
         <div class="gloce-filter-header" onclick="gloceV3ToggleSection('map')">
             <div class="gloce-filter-header-title">
@@ -294,40 +288,30 @@
                     <span id="gloce_map_instruction">เลือกภูมิภาคจากแผนที่</span>
                 </div>
                 
-                <!-- SVG Map -->
                 <svg class="gloce-japan-map" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Hokkaido -->
                     <path id="map_Hokkaido" class="map-region" d="M380,20 L450,10 L480,50 L420,100 L370,80 Z" onclick="gloceV3SetFilter('Region', 'Hokkaido')"></path>
                     <text x="420" y="60" class="map-label">Hokkaido</text>
 
-                    <!-- Tohoku -->
                     <path id="map_Tohoku" class="map-region" d="M370,85 L420,105 L400,180 L350,160 Z" onclick="gloceV3SetFilter('Region', 'Tohoku')"></path>
                     <text x="385" y="140" class="map-label">Tohoku</text>
 
-                    <!-- Kanto -->
                     <path id="map_Kanto" class="map-region" d="M350,160 L400,180 L380,220 L340,200 Z" onclick="gloceV3SetFilter('Region', 'Kanto')"></path>
                     <text x="370" y="195" class="map-label">Kanto</text>
 
-                    <!-- Chubu -->
                     <path id="map_Chubu" class="map-region" d="M300,150 L350,160 L340,200 L310,210 L280,180 Z" onclick="gloceV3SetFilter('Region', 'Chubu')"></path>
                     <text x="315" y="180" class="map-label">Chubu</text>
 
-                    <!-- Kansai -->
                     <path id="map_Kansai" class="map-region" d="M260,180 L300,150 L280,180 L290,220 L250,210 Z" onclick="gloceV3SetFilter('Region', 'Kansai')"></path>
                     <text x="270" y="200" class="map-label">Kansai</text>
 
-                    <!-- Chugoku -->
                     <path id="map_Chugoku" class="map-region" d="M180,180 L260,180 L250,210 L190,200 Z" onclick="gloceV3SetFilter('Region', 'Chugoku')"></path>
                     <text x="220" y="195" class="map-label">Chugoku</text>
 
-                    <!-- Shikoku -->
                     <path id="map_Shikoku" class="map-region" d="M200,215 L250,220 L240,250 L210,240 Z" onclick="gloceV3SetFilter('Region', 'Shikoku')"></path>
 
-                    <!-- Kyushu -->
                     <path id="map_Kyushu" class="map-region" d="M130,200 L180,200 L170,260 L120,240 Z" onclick="gloceV3SetFilter('Region', 'Kyushu')"></path>
                     <text x="150" y="230" class="map-label">Kyushu</text>
 
-                    <!-- Okinawa -->
                     <path id="map_Okinawa" class="map-region" d="M50,320 L100,310 L90,350 L40,340 Z" onclick="gloceV3SetFilter('Region', 'Okinawa')"></path>
                     <text x="70" y="335" class="map-label">Okinawa</text>
                     
@@ -337,9 +321,7 @@
         </div>
     </div>
 
-    <!-- 3.2. Collapsible Filter: LIST (Default Hidden) -->
     <div class="gloce-filter-section">
-        <!-- Add 'collapsed' class to header -->
         <div class="gloce-filter-header collapsed" onclick="gloceV3ToggleSection('list')">
             <div class="gloce-filter-header-title">
                 <i class="fa-solid fa-list-ul text-emerald-600" style="color:#059669;"></i>
@@ -348,39 +330,33 @@
             <i id="gloce_filter_icon_list" class="fa-solid fa-chevron-down gloce-filter-toggle-icon"></i>
         </div>
 
-        <!-- Add 'hidden' class to body -->
         <div id="gloce_filter_body_list" class="gloce-filter-body hidden">
-            <!-- Buttons injected by JS -->
             <div id="gloce_v3_filter_container"></div>
         </div>
     </div>
 
-    <!-- Reset Button -->
     <div style="text-align: center; margin-bottom: 20px;">
         <button class="gloce-reset-btn" onclick="gloceV3SetFilter('All')">
             <i class="fa-solid fa-rotate-left"></i> <span id="gloce_reset_text">แสดงทั้งหมด</span>
         </button>
     </div>
 
-    <!-- 4. Content Area -->
     <div id="gloce_v3_content">
         <div class="gloce-loading">
             <i class="fa-solid fa-spinner fa-spin"></i> กำลังโหลดข้อมูล...
         </div>
     </div>
 
-    <!-- 5. Bottom Coupon -->
     <div class="gloce-coupon-box">
         <i class="fa-solid fa-ticket gloce-coupon-icon"></i>
         <h3 id="gloce_v3_bottom_coupon_title" class="gloce-coupon-title">หากคุณมีคูปองส่วนลดคลิกที่ตรงนี้</h3>
         <p id="gloce_v3_bottom_coupon_desc" class="gloce-coupon-desc">ดูวิธีการใช้งานคูปองและข้อกำหนดต่างๆ ได้ที่นี่</p>
-        <!-- Added ID for script targeting -->
         <a href="#" id="gloce_coupon_btn_bottom" class="gloce-coupon-btn" target="_blank">
             <i class="fa-solid fa-book-open" style="margin-right: 8px;"></i>
             <span id="gloce_v3_bottom_coupon_btn_text">คู่มือการใช้งานคูปอง</span>
         </a>
         <div class="gloce-copyright">
-            &copy; 2026 GLOCE Accommodations.
+            © 2026 GLOCE Accommodations.
         </div>
     </div>
 
@@ -542,6 +518,76 @@
                 "Modern": "モダン", "Sea Side": "海沿い", "Dormitory": "ドミトリー",
                 "Villa": "ヴィラ", "Ocean View": "オーシャンビュー"
             }
+        },
+        cn: {
+            headerTitle: "我们的住宿",
+            footerCouponTitle: "如果您有优惠券，请点击这里",
+            footerCouponDesc: "查看优惠券使用方法和条款。",
+            footerBtnText: "优惠券使用指南",
+            viewDetails: "查看详情",
+            all: "全部",
+            mapInstruction: "从地图选择区域",
+            reset: "显示全部",
+            filterMapLabel: "地图搜索",
+            filterListLabel: "列表搜索",
+            areaMapping: {
+                "逗子 (Zushi)": "逗子 (Zushi)", "葉山 (Hayama)": "叶山 (Hayama)",
+                "鎌倉 (Kamakura)": "镰仓 (Kamakura)", "横須賀 (Yokosuka)": "横须贺 (Yokosuka)",
+                "美幌 (Bihoro)": "美幌 (Bihoro)", "宮古島 (Miyakojima)": "宫古岛 (Miyakojima)",
+                "宮ヶ瀬 (Miyagase)": "宫濑 (Miyagase)", "岐阜 (Gifu)": "岐阜 (Gifu)",
+                "伊豆 (Izu)": "伊豆 (Izu)", "沖縄 (Okinawa)": "冲绳 (Okinawa)",
+                "千葉 (Chiba)": "千叶 (Chiba)", "広島 (Hiroshima)": "广岛 (Hiroshima)",
+                "大分 (Oita)": "大分 (Oita)", "会津 (Aizu)": "会津 (Aizu)",
+                "古河 (Furukawa)": "古河 (Furukawa)", "賢島 (Kashikojima)": "贤岛 (Kashikojima)",
+                "佐渡 (Sado)": "佐渡 (Sado)", "新潟 (Niigata)": "新泻 (Niigata)",
+                "南伊豆 (Minamiizu)": "南伊豆 (Minamiizu)"
+            },
+            tagMapping: {
+                "Guesthouse": "旅馆", "Worcation": "办公度假", "Workation": "办公度假",
+                "Homestay": "寄宿家庭", "Private House": "独栋别墅", "Log House": "原木小屋",
+                "Surfing": "冲浪", "Traditional": "传统民居", "BBQ": "烧烤",
+                "Beach": "海滩", "Private Rental": "包租", "City Center": "市中心",
+                "Near Temple": "寺庙附近", "Share Room": "合住房间", "Shareroom": "合住房间",
+                "Guest Room": "客房", "Guestroom": "客房", "Hokkaido": "北海道",
+                "Village": "度假村", "Resort": "度假胜地", "Nature": "自然",
+                "Modern": "现代", "Sea Side": "海边", "Dormitory": "多人宿舍",
+                "Villa": "别墅", "Ocean View": "海景"
+            }
+        },
+        kr: {
+            headerTitle: "우리의 숙소",
+            footerCouponTitle: "할인 쿠폰이 있다면 여기를 클릭하세요",
+            footerCouponDesc: "쿠폰 사용 방법 및 약관을 확인하세요.",
+            footerBtnText: "쿠폰 사용 가이드",
+            viewDetails: "상세 보기",
+            all: "전체",
+            mapInstruction: "지도에서 지역 선택",
+            reset: "전체 표시",
+            filterMapLabel: "지도 검색",
+            filterListLabel: "목록 검색",
+            areaMapping: {
+                "逗子 (Zushi)": "즈시 (Zushi)", "葉山 (Hayama)": "하야마 (Hayama)",
+                "鎌倉 (Kamakura)": "가마쿠라 (Kamakura)", "横須賀 (Yokosuka)": "요코스카 (Yokosuka)",
+                "美幌 (Bihoro)": "비호로 (Bihoro)", "宮古島 (Miyakojima)": "미야코지마 (Miyakojima)",
+                "宮ヶ瀬 (Miyagase)": "미야가세 (Miyagase)", "岐阜 (Gifu)": "기후 (Gifu)",
+                "伊豆 (Izu)": "이즈 (Izu)", "沖縄 (Okinawa)": "오키나와 (Okinawa)",
+                "千葉 (Chiba)": "지바 (Chiba)", "広島 (Hiroshima)": "히로시마 (Hiroshima)",
+                "大分 (Oita)": "오이타 (Oita)", "会津 (Aizu)": "아이즈 (Aizu)",
+                "古河 (Furukawa)": "후루카와 (Furukawa)", "賢島 (Kashikojima)": "가시코지마 (Kashikojima)",
+                "佐渡 (Sado)": "사도 (Sado)", "新潟 (Niigata)": "니가타 (Niigata)",
+                "南伊豆 (Minamiizu)": "미나미이즈 (Minamiizu)"
+            },
+            tagMapping: {
+                "Guesthouse": "게스트하우스", "Worcation": "워케이션", "Workation": "워케이션",
+                "Homestay": "홈스테이", "Private House": "단독 주택", "Log House": "로그 하우스",
+                "Surfing": "서핑", "Traditional": "전통 가옥", "BBQ": "바비큐",
+                "Beach": "해변", "Private Rental": "독채 대여", "City Center": "도심",
+                "Near Temple": "사원 근처", "Share Room": "쉐어룸", "Shareroom": "쉐어룸",
+                "Guest Room": "게스트룸", "Guestroom": "게스트룸", "Hokkaido": "홋카이도",
+                "Village": "빌리지", "Resort": "리조트", "Nature": "자연",
+                "Modern": "모던", "Sea Side": "해변가", "Dormitory": "도미토리",
+                "Villa": "빌라", "Ocean View": "오션뷰"
+            }
         }
     };
 
@@ -603,7 +649,7 @@
     }
 
     function updateUI() {
-        ['th','en','jp'].forEach(l => {
+        ['th','en','jp','cn','kr'].forEach(l => {
             const btn = document.getElementById(`gloce_v3_btn_${l}`);
             if(btn) btn.classList.toggle('active', l === currentLang);
         });
@@ -639,7 +685,14 @@
 
     function localizeUrl(url, lang) {
         if (!url || !url.startsWith('http')) return url;
-        const targetLang = (lang === 'jp') ? 'ja' : 'en';
+        
+        // Determine the target language code for the URL
+        let targetLang = 'en'; // Default
+        if (lang === 'jp') targetLang = 'ja';
+        else if (lang === 'cn') targetLang = 'zh-cn';
+        else if (lang === 'kr') targetLang = 'ko';
+
+        // Check if existing URL has standard AirHost locale pattern (/ja/, /en/)
         if (url.includes('/ja/') || url.includes('/en/')) {
             return url.replace(/\/(ja|en)\//, `/${targetLang}/`);
         }
@@ -712,7 +765,13 @@
         }
 
         if(filteredProps.length === 0) {
-            container.innerHTML = `<div style="text-align:center; padding:40px; color:#6b7280;">ไม่พบที่พักในโซนนี้ (No properties found)</div>`;
+            let noDataText = "ไม่พบที่พักในโซนนี้";
+            if(currentLang === 'en') noDataText = "No properties found in this area.";
+            if(currentLang === 'jp') noDataText = "このエリアには宿泊施設が見つかりませんでした。";
+            if(currentLang === 'cn') noDataText = "在该地区未找到住宿。";
+            if(currentLang === 'kr') noDataText = "이 지역에서 숙소를 찾을 수 없습니다.";
+
+            container.innerHTML = `<div style="text-align:center; padding:40px; color:#6b7280;">${noDataText}</div>`;
             return;
         }
 
@@ -787,10 +846,8 @@
     function init() {
         if(document.getElementById('gloce_v3_content')) {
             gloceV3SetLang('th');
-            // Initial state: Map open, List closed? Or both closed?
-            // Let's set both CLOSED initially for cleaner look, or open Map.
-            // Currently set to false in filterState object above.
-            gloceV3ToggleSection('map'); // Open Map by default
+            // Initial state: Map open by default as per previous version
+            gloceV3ToggleSection('map'); 
         } else {
             setTimeout(init, 500);
         }
